@@ -36,6 +36,32 @@ function rgeometry_admin_ui_icon_map() {
 	);
 }
 
+/**
+ * Hide the block editor content area on the static front page. The page's
+ * content is driven entirely by ACF fields + front-page.php, so the editor
+ * is just dead screen space sitting above the meaningful controls.
+ *
+ * Title, featured image, sidebar (page settings, Rank Math panel, etc.) all
+ * stay visible. Other pages keep their editor untouched.
+ */
+add_action( 'admin_init', 'rgeometry_hide_editor_on_front_page' );
+function rgeometry_hide_editor_on_front_page() {
+	$post_id = 0;
+	if ( isset( $_GET['post'] ) ) {
+		$post_id = (int) $_GET['post'];
+	} elseif ( isset( $_POST['post_ID'] ) ) {
+		$post_id = (int) $_POST['post_ID'];
+	}
+	if ( ! $post_id ) {
+		return;
+	}
+
+	$front_id = (int) get_option( 'page_on_front' );
+	if ( $front_id && $post_id === $front_id ) {
+		remove_post_type_support( 'page', 'editor' );
+	}
+}
+
 add_action( 'admin_enqueue_scripts', 'rgeometry_admin_ui_enqueue' );
 function rgeometry_admin_ui_enqueue( $hook ) {
 	if ( ! rgeometry_admin_ui_should_load( $hook ) ) {

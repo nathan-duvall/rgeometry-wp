@@ -92,33 +92,56 @@
 	line-height: 32px;
 }
 
-/* Inside (form body) */
+/* Inside (form body). Let the field rows own their own padding so the
+   default ACF negative margins don't push content past the postbox edge. */
 .postbox[id^="acf-group_rgeometry_"] .inside {
-	padding: 14px 16px 18px;
+	padding: 0;
 	margin: 0;
 	background: #fff;
 }
 .postbox[id^="acf-group_rgeometry_"].closed .inside {
 	display: none !important;
 }
+.postbox[id^="acf-group_rgeometry_"] .acf-fields {
+	margin: 0;
+}
 
-/* ACF field rows */
+/* ACF field rows: horizontal padding aligns with the header's icon badge. */
 .postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field {
-	padding: 12px 0;
+	padding: 14px 20px;
 	border-top: 1px solid #f0f0f1;
 }
 .postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field:first-child {
-	padding-top: 4px;
+	padding-top: 16px;
 	border-top: 0;
+}
+.postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field:last-child {
+	padding-bottom: 18px;
+}
+
+/* ACF tab wrapper aligns with the field padding so tab labels don't hang off. */
+.postbox[id^="acf-group_rgeometry_"] .acf-tab-wrap {
+	padding: 0 20px;
+	margin: 0;
+}
+.postbox[id^="acf-group_rgeometry_"] .acf-tab-wrap .acf-tab-group {
+	border-bottom: 1px solid #dcdcde;
+}
+
+/* Repeater + flexible-content inner spacing adjustments. ACF applies its own
+   negative-margin rows inside repeaters; don't fight it, just keep the outer
+   acf-field padding doing the alignment work. */
+.postbox[id^="acf-group_rgeometry_"] .acf-repeater,
+.postbox[id^="acf-group_rgeometry_"] .acf-flexible-content {
+	margin: 0;
 }
 
 /* Group-level description, when ACF surfaces it */
 .postbox[id^="acf-group_rgeometry_"] .acf-field-group-description {
-	margin: 0 0 12px;
-	padding: 8px 10px;
+	margin: 0;
+	padding: 12px 20px;
 	background: var(--rg-admin-surface);
-	border-left: 2px solid var(--rg-admin-primary);
-	border-radius: 2px;
+	border-bottom: 1px solid #f0f0f1;
 	font-size: 12px;
 	color: var(--rg-admin-muted);
 	line-height: 1.5;
