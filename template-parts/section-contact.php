@@ -1,6 +1,10 @@
 <?php
 /**
- * Section: Contact (dark bg, 2-column, form submits via admin-ajax)
+ * Section: Contact (dark bg, 2-column, form submits via admin-ajax).
+ *
+ * Business info (address/phone/email) comes from Theme Settings > Business Info.
+ * Editorial copy (eyebrow/heading/subheading/project types/button labels)
+ * stays on the page.
  *
  * @package RGeometry
  */
@@ -12,9 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 $eyebrow    = rgeometry_field( 'contact_eyebrow', 'Contact' );
 $heading    = rgeometry_field( 'contact_heading', 'Ready to talk about your project?' );
 $subheading = rgeometry_field( 'contact_subheading', "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit." );
-$address    = rgeometry_field( 'contact_address', '201 Sikes Hall, Clemson, SC 29634' );
-$phone      = rgeometry_field( 'contact_phone',   '(864) 207-0500' );
-$email      = rgeometry_field( 'contact_email',   'hello@rgeometry.com' );
+
+// Business info comes from Theme Settings (options page).
+$address = function_exists( 'get_field' ) ? get_field( 'business_address', 'option' ) : '';
+$phone   = function_exists( 'get_field' ) ? get_field( 'business_phone',   'option' ) : '';
+$email   = function_exists( 'get_field' ) ? get_field( 'business_email',   'option' ) : '';
 
 $project_types = rgeometry_field( 'contact_project_types', array(
 	array( 'label' => 'Custom Home' ),
@@ -36,9 +42,9 @@ $thanks_body  = rgeometry_field( 'contact_thanks_body',  "We'll be in touch with
 				<p class="rg-contact__body"><?php echo esc_html( $subheading ); ?></p>
 
 				<ul class="rg-contact__meta">
-					<li><?php echo rgeometry_icon( 'map-pin' ); ?><span><?php echo esc_html( $address ); ?></span></li>
-					<li><?php echo rgeometry_icon( 'phone' ); ?><span><?php echo esc_html( $phone ); ?></span></li>
-					<li><?php echo rgeometry_icon( 'mail' ); ?><span><?php echo esc_html( $email ); ?></span></li>
+					<?php if ( $address ) : ?><li><?php echo rgeometry_icon( 'map-pin' ); ?><span><?php echo esc_html( $address ); ?></span></li><?php endif; ?>
+					<?php if ( $phone ) :   ?><li><?php echo rgeometry_icon( 'phone' );   ?><span><?php echo esc_html( $phone );   ?></span></li><?php endif; ?>
+					<?php if ( $email ) :   ?><li><?php echo rgeometry_icon( 'mail' );    ?><span><a href="mailto:<?php echo esc_attr( $email ); ?>" class="rg-contact__email-link"><?php echo esc_html( $email ); ?></a></span></li><?php endif; ?>
 				</ul>
 			</div>
 

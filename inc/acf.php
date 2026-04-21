@@ -31,17 +31,17 @@ function rgeometry_acf_json_load( $paths ) {
 }
 
 /**
- * Import JSON field groups that don't already exist in the database. Runs on
- * admin_init so field groups appear in ACF's Field Groups admin screen as
- * first-class records, not just "Sync Available" placeholders.
+ * Import JSON field groups into the database on admin load so they appear in
+ * ACF's Field Groups admin screen as first-class records, not "Sync Available"
+ * placeholders. Also handles deprecation: JSON groups marked active:false get
+ * their DB record deactivated (or deleted if already empty) so old data from
+ * retired groups stops cluttering the edit screen.
  */
 add_action( 'admin_init', 'rgeometry_acf_sync_local_json' );
 function rgeometry_acf_sync_local_json() {
 	if ( ! function_exists( 'acf_get_local_json_files' ) || ! function_exists( 'acf_update_field_group' ) ) {
 		return;
 	}
-
-	// Only run for users who could import via the admin UI anyway.
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
@@ -51,30 +51,39 @@ function rgeometry_acf_sync_local_json() {
 		return;
 	}
 
-	// Groups already imported into wp_posts (keyed by ACF key).
+	// Index existing DB groups by ACF key -> ID.
 	$db_groups = acf_get_field_groups();
-	$db_keys   = array();
+	$db_ids    = array();
 	foreach ( $db_groups as $g ) {
-		// Skip groups that are only in JSON (local === 'json'). We want real DB records.
 		if ( ! empty( $g['ID'] ) && $g['ID'] > 0 ) {
-			$db_keys[] = $g['key'];
+			$db_ids[ $g['key'] ] = (int) $g['ID'];
 		}
 	}
 
 	foreach ( array_keys( $files ) as $key ) {
-		if ( in_array( $key, $db_keys, true ) ) {
-			continue; // already in DB
-		}
-
-		$group = acf_get_local_field_group( $key );
-		if ( ! $group ) {
+		$local = acf_get_local_field_group( $key );
+		if ( ! $local ) {
 			continue;
 		}
 
-		// Pull the full fields list (including sub-fields) for this group, then import.
-		$fields = acf_get_fields( $group );
-		$group  = acf_update_field_group( $group );
+		$is_deprecated = isset( $local['active'] ) && $local['active'] === false;
 
+		// Deprecated: if a DB record exists, delete it so it stops showing up.
+		if ( $is_deprecated ) {
+			if ( isset( $db_ids[ $key ] ) && function_exists( 'acf_delete_field_group' ) ) {
+				acf_delete_field_group( $db_ids[ $key ] );
+			}
+			continue;
+		}
+
+		// Already imported and not deprecated: nothing to do.
+		if ( isset( $db_ids[ $key ] ) ) {
+			continue;
+		}
+
+		// Fresh import.
+		$fields = acf_get_fields( $local );
+		$group  = acf_update_field_group( $local );
 		if ( $fields ) {
 			foreach ( $fields as $field ) {
 				$field['parent'] = $group['ID'];

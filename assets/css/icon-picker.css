@@ -1,0 +1,201 @@
+/* =============================================================================
+   RGeometry Icon Picker — admin-only styles
+   ============================================================================= */
+
+.rg-iconpicker { display: inline-block; max-width: 100%; }
+
+.rg-iconpicker__btn {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 10px;
+	height: auto !important;
+	min-height: 36px;
+	padding: 6px 10px !important;
+	background: #fff !important;
+	border: 1px solid #8c8f94 !important;
+	border-radius: 4px !important;
+	cursor: pointer;
+	max-width: 320px;
+	text-align: left !important;
+}
+.rg-iconpicker__btn:hover { border-color: #2271b1 !important; }
+
+.rg-iconpicker__preview {
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	color: #1d2327;
+}
+.rg-iconpicker__preview svg { width: 20px; height: 20px; }
+.rg-iconpicker__placeholder {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 2px;
+	color: #8c8f94;
+	font-size: 12px;
+}
+
+.rg-iconpicker__label {
+	flex: 1;
+	font-size: 13px;
+	color: #1d2327;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.rg-iconpicker__clear {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	border-radius: 50%;
+	color: #8c8f94;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+}
+.rg-iconpicker__clear:hover { background: #f0f0f1; color: #1d2327; }
+
+/* ---------- Modal ---------- */
+.rg-iconpicker-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.55);
+	padding: 24px;
+}
+.rg-iconpicker-modal[hidden] { display: none; }
+
+.rg-iconpicker-modal__box {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 860px;
+	max-height: 90vh;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+	overflow: hidden;
+}
+
+.rg-iconpicker-modal__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 16px 20px;
+	border-bottom: 1px solid #dcdcde;
+}
+.rg-iconpicker-modal__title {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1d2327;
+}
+.rg-iconpicker-modal__close {
+	background: transparent;
+	border: 0;
+	font-size: 22px;
+	line-height: 1;
+	padding: 4px 8px;
+	cursor: pointer;
+	color: #50575e;
+}
+.rg-iconpicker-modal__close:hover { color: #1d2327; }
+
+.rg-iconpicker-modal__search {
+	padding: 12px 20px;
+	border-bottom: 1px solid #f0f0f1;
+}
+.rg-iconpicker-modal__search input {
+	width: 100%;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+}
+.rg-iconpicker-modal__search input:focus {
+	outline: none;
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.rg-iconpicker-modal__body {
+	flex: 1 1 auto;
+	overflow-y: auto;
+	padding: 16px 20px 20px;
+}
+
+.rg-iconpicker-category {
+	margin: 0 0 20px;
+}
+.rg-iconpicker-category__title {
+	margin: 0 0 10px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #646970;
+}
+.rg-iconpicker-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+	gap: 6px;
+}
+.rg-iconpicker-grid__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 10px 6px;
+	background: #fff;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #1d2327;
+	min-height: 70px;
+}
+.rg-iconpicker-grid__item:hover {
+	background: #f6f7f7;
+	border-color: #dcdcde;
+}
+.rg-iconpicker-grid__item.is-selected {
+	background: #f0f6fc;
+	border-color: #2271b1;
+}
+.rg-iconpicker-grid__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+}
+.rg-iconpicker-grid__icon svg { width: 24px; height: 24px; }
+.rg-iconpicker-grid__label {
+	font-size: 11px;
+	line-height: 1.2;
+	color: #50575e;
+	text-align: center;
+	word-break: break-word;
+}
+
+.rg-iconpicker-modal__empty {
+	padding: 40px 20px;
+	text-align: center;
+	color: #646970;
+	font-size: 14px;
+}

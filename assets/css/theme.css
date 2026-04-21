@@ -169,6 +169,8 @@ html.admin-bar { scroll-padding-top: 32px; }
 	padding-bottom: 1rem;
 }
 .rg-nav__brand {
+	display: inline-flex;
+	align-items: center;
 	font-family: "Playfair Display", Georgia, serif;
 	font-size: 1.25rem;
 	font-weight: 600;
@@ -178,7 +180,9 @@ html.admin-bar { scroll-padding-top: 32px; }
 	border: 0;
 	cursor: pointer;
 	padding: 0;
+	text-decoration: none;
 }
+.rg-nav__logo { display: block; height: 28px; width: auto; }
 .rg-nav__links {
 	display: none;
 	align-items: center;
@@ -234,9 +238,12 @@ html.admin-bar { scroll-padding-top: 32px; }
 	font-size: 1rem;
 	font-weight: 500;
 	color: hsl(var(--foreground) / 0.7);
+	text-align: left;
 }
 .rg-nav__mobile-link:hover { color: hsl(var(--foreground)); }
 .rg-nav__mobile-cta { margin-top: 0.5rem; align-self: flex-start; }
+.rg-contact__email-link { color: inherit; text-decoration: none; transition: color 200ms ease; }
+.rg-contact__email-link:hover { color: hsl(var(--contact-foreground)); }
 
 /* =============================================================================
    Hero
@@ -667,6 +674,7 @@ html.admin-bar { scroll-padding-top: 32px; }
 	font-weight: 600;
 	color: hsl(var(--contact-foreground));
 }
+.rg-footer__logo { display: block; height: 24px; width: auto; }
 .rg-footer__tagline {
 	margin: 0.25rem 0 0;
 	font-size: 0.75rem;

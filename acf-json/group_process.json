@@ -22,11 +22,9 @@
 					"key": "field_rg_step_icon",
 					"label": "Icon",
 					"name": "icon",
-					"type": "select",
-					"choices": { "chat": "Chat bubble", "pencil": "Pencil", "document": "Document", "check": "Checkmark circle", "home": "Home", "renovation": "Renovation", "commercial": "Commercial" },
-					"default_value": "chat",
+					"type": "rg_icon_picker",
 					"return_format": "value",
-					"allow_null": 0
+					"instructions": "Click to choose from the icon library."
 				}
 			]
 		}

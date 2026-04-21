@@ -19,7 +19,10 @@ define( 'RGEOMETRY_ASSET_VER', defined( 'WP_DEBUG' ) && WP_DEBUG ? (string) time
 require_once RGEOMETRY_DIR . '/inc/setup.php';
 require_once RGEOMETRY_DIR . '/inc/enqueue.php';
 require_once RGEOMETRY_DIR . '/inc/acf.php';
+require_once RGEOMETRY_DIR . '/inc/options.php';
 require_once RGEOMETRY_DIR . '/inc/helpers.php';
 require_once RGEOMETRY_DIR . '/inc/icons.php';
+require_once RGEOMETRY_DIR . '/inc/icon-picker.php';
 require_once RGEOMETRY_DIR . '/inc/contact-form.php';
+require_once RGEOMETRY_DIR . '/inc/menus.php';
 require_once RGEOMETRY_DIR . '/inc/seed.php';

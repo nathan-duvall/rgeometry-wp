@@ -1,0 +1,76 @@
+{
+	"key": "group_rgeometry_settings_footer",
+	"title": "Footer Settings",
+	"description": "Global footer elements shown on every page. For the footer nav menu, use Appearance > Menus.",
+	"fields": [
+		{
+			"key": "field_rg_footer_logo",
+			"label": "Footer logo",
+			"name": "footer_logo",
+			"type": "image",
+			"return_format": "array",
+			"preview_size": "thumbnail",
+			"instructions": "Optional. Light or reversed variant since the footer background is dark. Leave blank to use the Brand text."
+		},
+		{
+			"key": "field_rg_footer_logo_height",
+			"label": "Footer logo height (px)",
+			"name": "footer_logo_height",
+			"type": "number",
+			"default_value": 24,
+			"min": 16,
+			"max": 80
+		},
+		{
+			"key": "field_rg_footer_brand_text",
+			"label": "Brand text",
+			"name": "footer_brand_text",
+			"type": "text",
+			"default_value": "RGeometry"
+		},
+		{
+			"key": "field_rg_footer_tagline",
+			"label": "Tagline",
+			"name": "footer_tagline",
+			"type": "text",
+			"default_value": "Architecture grounded in how you live.",
+			"instructions": "Shown under the brand in the footer."
+		},
+		{
+			"key": "field_rg_footer_socials",
+			"label": "Social links",
+			"name": "footer_socials",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add social link",
+			"collapsed": "field_rg_footer_social_icon",
+			"min": 0,
+			"sub_fields": [
+				{
+					"key": "field_rg_footer_social_icon",
+					"label": "Icon",
+					"name": "icon",
+					"type": "rg_icon_picker",
+					"return_format": "value",
+					"instructions": "Click to choose a social icon."
+				},
+				{ "key": "field_rg_footer_social_url",   "label": "Profile URL",   "name": "url",   "type": "url" },
+				{ "key": "field_rg_footer_social_label", "label": "Screen-reader label", "name": "label", "type": "text", "instructions": "e.g. \"Follow us on Instagram\"." }
+			]
+		},
+		{
+			"key": "field_rg_footer_copyright",
+			"label": "Copyright suffix",
+			"name": "footer_copyright",
+			"type": "text",
+			"default_value": "All rights reserved.",
+			"instructions": "Appended after the auto-generated year and brand name."
+		}
+	],
+	"location": [[{ "param": "options_page", "operator": "==", "value": "acf-options-footer" }]],
+	"menu_order": 0,
+	"position": "normal",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}

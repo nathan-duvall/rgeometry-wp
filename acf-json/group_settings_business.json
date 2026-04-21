@@ -1,0 +1,43 @@
+{
+	"key": "group_rgeometry_settings_business",
+	"title": "Business Info",
+	"description": "Company-wide contact information. Used in the Contact section and anywhere else on the site that displays address, phone, or email.",
+	"fields": [
+		{
+			"key": "field_rg_business_address",
+			"label": "Address",
+			"name": "business_address",
+			"type": "text",
+			"default_value": "201 Sikes Hall, Clemson, SC 29634",
+			"instructions": "Shown next to the map-pin icon in the Contact section."
+		},
+		{
+			"key": "field_rg_business_phone",
+			"label": "Phone",
+			"name": "business_phone",
+			"type": "text",
+			"default_value": "(864) 207-0500"
+		},
+		{
+			"key": "field_rg_business_email",
+			"label": "Public email",
+			"name": "business_email",
+			"type": "email",
+			"default_value": "hello@rgeometry.com",
+			"instructions": "Shown on the page. Visible to visitors."
+		},
+		{
+			"key": "field_rg_business_form_recipient",
+			"label": "Form recipient email",
+			"name": "business_form_recipient_email",
+			"type": "email",
+			"instructions": "Where contact form submissions are sent. Falls back to the site admin email if blank. Not displayed on the page."
+		}
+	],
+	"location": [[{ "param": "options_page", "operator": "==", "value": "acf-options-business-info" }]],
+	"menu_order": 0,
+	"position": "normal",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}

@@ -1,47 +1,10 @@
 {
 	"key": "group_rgeometry_nav",
-	"title": "Navbar",
-	"description": "The fixed navigation at the top of the page. Brand text, menu links, and the top-right CTA button.",
-	"fields": [
-		{ "key": "field_rg_nav_brand", "label": "Brand text", "name": "nav_brand", "type": "text", "default_value": "RGeometry", "instructions": "Shown in the top-left. Also used in the footer if the Footer brand field is left blank." },
-		{
-			"key": "field_rg_nav_links",
-			"label": "Navigation links",
-			"name": "nav_links",
-			"type": "repeater",
-			"layout": "table",
-			"button_label": "Add link",
-			"collapsed": "field_rg_nav_link_label",
-			"min": 0,
-			"sub_fields": [
-				{ "key": "field_rg_nav_link_label", "label": "Label", "name": "label", "type": "text" },
-				{
-					"key": "field_rg_nav_link_target",
-					"label": "Scrolls to",
-					"name": "target",
-					"type": "select",
-					"choices": { "services": "Services", "projects": "Projects", "about": "About", "process": "Process", "testimonials": "Testimonials", "contact": "Contact" },
-					"return_format": "value",
-					"allow_null": 0
-				}
-			]
-		},
-		{ "key": "field_rg_nav_cta_label", "label": "CTA button label", "name": "nav_cta_label", "type": "text", "default_value": "Start a Conversation" },
-		{
-			"key": "field_rg_nav_cta_target",
-			"label": "CTA scrolls to section",
-			"name": "nav_cta_target",
-			"type": "select",
-			"choices": { "contact": "Contact", "projects": "Projects", "services": "Services", "about": "About", "process": "Process", "testimonials": "Testimonials" },
-			"default_value": "contact",
-			"allow_null": 0,
-			"return_format": "value"
-		}
-	],
+	"title": "Navbar (deprecated)",
+	"description": "Deprecated in v0.4. The navigation is now managed via Appearance > Menus (Primary Menu location).",
+	"fields": [],
 	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
-	"menu_order": 2,
+	"menu_order": 99,
 	"position": "normal",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"active": true
+	"active": false
 }

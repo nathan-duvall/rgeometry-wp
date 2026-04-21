@@ -1,15 +1,11 @@
 {
 	"key": "group_rgeometry_contact",
 	"title": "Contact",
-	"description": "The dark contact section. Intro copy, contact info visible to visitors, and the contact form. Form submissions are emailed to the address in \"Form recipient\".",
+	"description": "The dark contact section's editorial copy. Business contact info (address, phone, email) lives in Theme Settings > Business Info because it's shared site-wide.",
 	"fields": [
 		{ "key": "field_rg_contact_eyebrow",    "label": "Eyebrow label", "name": "contact_eyebrow",    "type": "text",     "default_value": "Contact" },
 		{ "key": "field_rg_contact_heading",    "label": "Heading",    "name": "contact_heading",    "type": "text",     "default_value": "Ready to talk about your project?" },
 		{ "key": "field_rg_contact_subheading", "label": "Subheading", "name": "contact_subheading", "type": "textarea", "rows": 3, "new_lines": "", "default_value": "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit." },
-		{ "key": "field_rg_contact_address",    "label": "Address",    "name": "contact_address",    "type": "text", "instructions": "Shown next to the map-pin icon." },
-		{ "key": "field_rg_contact_phone",      "label": "Phone",      "name": "contact_phone",      "type": "text" },
-		{ "key": "field_rg_contact_email",      "label": "Email (public)", "name": "contact_email", "type": "email", "instructions": "Shown on the page for visitors to copy or tap." },
-		{ "key": "field_rg_contact_recipient",  "label": "Form recipient email", "name": "contact_recipient_email", "type": "email", "instructions": "Where form submissions are sent. Falls back to the site admin email if blank." },
 		{
 			"key": "field_rg_contact_project_types",
 			"label": "Project type options",

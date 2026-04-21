@@ -21,11 +21,9 @@
 					"key": "field_rg_service_icon",
 					"label": "Icon",
 					"name": "icon",
-					"type": "select",
-					"choices": { "home": "Home (pitched roof)", "renovation": "Renovation (overlapping squares)", "commercial": "Commercial (building)", "chat": "Chat bubble", "pencil": "Pencil", "document": "Document", "check": "Checkmark circle" },
-					"default_value": "home",
+					"type": "rg_icon_picker",
 					"return_format": "value",
-					"allow_null": 0
+					"instructions": "Click to choose from the icon library."
 				}
 			]
 		}

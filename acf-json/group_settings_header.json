@@ -1,0 +1,40 @@
+{
+	"key": "group_rgeometry_settings_header",
+	"title": "Header Settings",
+	"description": "Global header elements shown on every page. For the navigation menu itself, use Appearance > Menus.",
+	"fields": [
+		{
+			"key": "field_rg_header_logo",
+			"label": "Logo image",
+			"name": "header_logo",
+			"type": "image",
+			"return_format": "array",
+			"preview_size": "thumbnail",
+			"instructions": "Optional. PNG with transparent background works best. Should read clearly on both a light hero overlay and a white scrolled header. Leave blank to use the Brand text instead."
+		},
+		{
+			"key": "field_rg_header_logo_height",
+			"label": "Logo height (px)",
+			"name": "header_logo_height",
+			"type": "number",
+			"default_value": 28,
+			"min": 16,
+			"max": 80,
+			"instructions": "Rendered height of the logo in the header."
+		},
+		{
+			"key": "field_rg_header_brand_text",
+			"label": "Brand text",
+			"name": "header_brand_text",
+			"type": "text",
+			"default_value": "RGeometry",
+			"instructions": "Shown in place of the logo when no image is uploaded. Also used as the logo's alt text when an image is set."
+		}
+	],
+	"location": [[{ "param": "options_page", "operator": "==", "value": "acf-options-header" }]],
+	"menu_order": 0,
+	"position": "normal",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}

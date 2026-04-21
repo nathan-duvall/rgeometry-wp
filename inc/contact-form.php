@@ -29,7 +29,7 @@ function rgeometry_contact_submit() {
 
 	$to = '';
 	if ( function_exists( 'get_field' ) ) {
-		$to = get_field( 'contact_recipient_email' );
+		$to = get_field( 'business_form_recipient_email', 'option' );
 	}
 	if ( ! is_email( $to ) ) {
 		$to = get_option( 'admin_email' );
