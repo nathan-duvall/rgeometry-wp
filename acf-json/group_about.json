@@ -1,23 +1,25 @@
 {
 	"key": "group_rgeometry_about",
 	"title": "About",
+	"description": "The \"About Us\" section with two intro paragraphs on the left and a team photo grid on the right.",
 	"fields": [
-		{ "key": "field_rg_about_eyebrow", "label": "Eyebrow", "name": "about_eyebrow", "type": "text", "default_value": "About Us" },
+		{ "key": "field_rg_about_eyebrow", "label": "Eyebrow label", "name": "about_eyebrow", "type": "text", "default_value": "About Us" },
 		{ "key": "field_rg_about_heading", "label": "Heading", "name": "about_heading", "type": "text", "default_value": "Small firm. Full attention." },
-		{ "key": "field_rg_about_paragraph_1", "label": "Paragraph 1", "name": "about_paragraph_1", "type": "textarea", "rows": 4, "new_lines": "" },
-		{ "key": "field_rg_about_paragraph_2", "label": "Paragraph 2", "name": "about_paragraph_2", "type": "textarea", "rows": 4, "new_lines": "" },
+		{ "key": "field_rg_about_paragraph_1", "label": "Paragraph 1", "name": "about_paragraph_1", "type": "textarea", "rows": 4, "new_lines": "", "default_value": "RGeometry was founded in 2019 by Richard Shaluly, AIA. We're a team of four, two licensed architects, one intern, and a project coordinator who keeps everything honest." },
+		{ "key": "field_rg_about_paragraph_2", "label": "Paragraph 2", "name": "about_paragraph_2", "type": "textarea", "rows": 4, "new_lines": "", "default_value": "We take on around 12 projects a year, which means you're not a number in a queue. You get Richard or John on every call, every site visit, and every tough conversation." },
 		{
 			"key": "field_rg_about_team",
-			"label": "Team",
+			"label": "Team members",
 			"name": "about_team",
 			"type": "repeater",
 			"layout": "block",
 			"button_label": "Add team member",
+			"collapsed": "field_rg_team_name",
 			"min": 0,
 			"sub_fields": [
 				{ "key": "field_rg_team_name",  "label": "Name",  "name": "name",  "type": "text" },
 				{ "key": "field_rg_team_role",  "label": "Role",  "name": "role",  "type": "text" },
-				{ "key": "field_rg_team_image", "label": "Photo", "name": "image", "type": "image", "return_format": "url", "preview_size": "thumbnail", "instructions": "Leave blank to use a seeded placeholder." },
+				{ "key": "field_rg_team_image", "label": "Photo", "name": "image", "type": "image", "return_format": "url", "preview_size": "thumbnail", "instructions": "4:5 portrait works best. Leave blank to use a seeded placeholder." },
 				{ "key": "field_rg_team_seed",  "label": "Placeholder seed", "name": "seed", "type": "text", "instructions": "Used only when Photo is blank." }
 			]
 		}
@@ -26,5 +28,6 @@
 	"menu_order": 5,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }

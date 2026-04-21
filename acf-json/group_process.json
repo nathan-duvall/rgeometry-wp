@@ -1,8 +1,9 @@
 {
 	"key": "group_rgeometry_process",
 	"title": "Process",
+	"description": "The 4-column \"How We Work\" section. Each step has a number, title, description, and an icon from the built-in set.",
 	"fields": [
-		{ "key": "field_rg_process_eyebrow", "label": "Eyebrow", "name": "process_eyebrow", "type": "text", "default_value": "How We Work" },
+		{ "key": "field_rg_process_eyebrow", "label": "Eyebrow label", "name": "process_eyebrow", "type": "text", "default_value": "How We Work" },
 		{ "key": "field_rg_process_heading", "label": "Heading", "name": "process_heading", "type": "text", "default_value": "A process that respects your time." },
 		{
 			"key": "field_rg_process_steps",
@@ -11,9 +12,10 @@
 			"type": "repeater",
 			"layout": "block",
 			"button_label": "Add step",
+			"collapsed": "field_rg_step_title",
 			"min": 0,
 			"sub_fields": [
-				{ "key": "field_rg_step_num",   "label": "Number",      "name": "num",   "type": "text", "instructions": "Format like 01, 02, 03…" },
+				{ "key": "field_rg_step_num",   "label": "Number",      "name": "num",   "type": "text", "instructions": "Format like 01, 02, 03, 04." },
 				{ "key": "field_rg_step_title", "label": "Title",       "name": "title", "type": "text" },
 				{ "key": "field_rg_step_desc",  "label": "Description", "name": "desc",  "type": "textarea", "rows": 3, "new_lines": "" },
 				{
@@ -21,15 +23,7 @@
 					"label": "Icon",
 					"name": "icon",
 					"type": "select",
-					"choices": {
-						"chat": "Chat bubble",
-						"pencil": "Pencil",
-						"document": "Document",
-						"check": "Checkmark circle",
-						"home": "Home",
-						"renovation": "Renovation",
-						"commercial": "Commercial"
-					},
+					"choices": { "chat": "Chat bubble", "pencil": "Pencil", "document": "Document", "check": "Checkmark circle", "home": "Home", "renovation": "Renovation", "commercial": "Commercial" },
 					"default_value": "chat",
 					"return_format": "value",
 					"allow_null": 0
@@ -41,5 +35,6 @@
 	"menu_order": 6,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }

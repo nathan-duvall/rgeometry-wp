@@ -22,6 +22,10 @@ $project_types = rgeometry_field( 'contact_project_types', array(
 	array( 'label' => 'Commercial' ),
 	array( 'label' => 'Not Sure' ),
 ) );
+
+$submit_label = rgeometry_field( 'contact_submit_label', 'Send It' );
+$thanks_title = rgeometry_field( 'contact_thanks_title', 'Thanks for reaching out.' );
+$thanks_body  = rgeometry_field( 'contact_thanks_body',  "We'll be in touch within 48 hours." );
 ?>
 <section id="contact" class="rg-section rg-contact">
 	<div class="rg-container">
@@ -61,13 +65,13 @@ $project_types = rgeometry_field( 'contact_project_types', array(
 						<label class="rg-field__label">Message</label>
 						<textarea name="message" rows="4" class="rg-field__input rg-field__input--textarea" placeholder="Tell us a bit about your project..."></textarea>
 					</div>
-					<button type="submit" class="rg-btn rg-btn--primary rg-contact__submit">Send It</button>
+					<button type="submit" class="rg-btn rg-btn--primary rg-contact__submit"><?php echo esc_html( $submit_label ); ?></button>
 					<p class="rg-contact__status" data-contact-status aria-live="polite"></p>
 				</form>
 
 				<div class="rg-contact__thanks" data-contact-thanks hidden>
-					<h3 class="rg-contact__thanks-title">Thanks for reaching out.</h3>
-					<p class="rg-contact__thanks-body">We'll be in touch within 48 hours.</p>
+					<h3 class="rg-contact__thanks-title"><?php echo esc_html( $thanks_title ); ?></h3>
+					<p class="rg-contact__thanks-body"><?php echo esc_html( $thanks_body ); ?></p>
 				</div>
 			</div>
 		</div>

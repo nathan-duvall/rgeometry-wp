@@ -1,14 +1,15 @@
 {
 	"key": "group_rgeometry_contact",
 	"title": "Contact",
+	"description": "The dark contact section. Intro copy, contact info visible to visitors, and the contact form. Form submissions are emailed to the address in \"Form recipient\".",
 	"fields": [
-		{ "key": "field_rg_contact_eyebrow",    "label": "Eyebrow",    "name": "contact_eyebrow",    "type": "text",     "default_value": "Contact" },
+		{ "key": "field_rg_contact_eyebrow",    "label": "Eyebrow label", "name": "contact_eyebrow",    "type": "text",     "default_value": "Contact" },
 		{ "key": "field_rg_contact_heading",    "label": "Heading",    "name": "contact_heading",    "type": "text",     "default_value": "Ready to talk about your project?" },
-		{ "key": "field_rg_contact_subheading", "label": "Subheading", "name": "contact_subheading", "type": "textarea", "rows": 3, "new_lines": "" },
-		{ "key": "field_rg_contact_address",    "label": "Address",    "name": "contact_address",    "type": "text" },
+		{ "key": "field_rg_contact_subheading", "label": "Subheading", "name": "contact_subheading", "type": "textarea", "rows": 3, "new_lines": "", "default_value": "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit." },
+		{ "key": "field_rg_contact_address",    "label": "Address",    "name": "contact_address",    "type": "text", "instructions": "Shown next to the map-pin icon." },
 		{ "key": "field_rg_contact_phone",      "label": "Phone",      "name": "contact_phone",      "type": "text" },
-		{ "key": "field_rg_contact_email",      "label": "Email (shown to visitors)", "name": "contact_email", "type": "email" },
-		{ "key": "field_rg_contact_recipient",  "label": "Form recipient email",      "name": "contact_recipient_email", "type": "email", "instructions": "Where form submissions are sent. Falls back to site admin email." },
+		{ "key": "field_rg_contact_email",      "label": "Email (public)", "name": "contact_email", "type": "email", "instructions": "Shown on the page for visitors to copy or tap." },
+		{ "key": "field_rg_contact_recipient",  "label": "Form recipient email", "name": "contact_recipient_email", "type": "email", "instructions": "Where form submissions are sent. Falls back to the site admin email if blank." },
 		{
 			"key": "field_rg_contact_project_types",
 			"label": "Project type options",
@@ -16,15 +17,20 @@
 			"type": "repeater",
 			"layout": "table",
 			"button_label": "Add option",
+			"collapsed": "field_rg_contact_pt_label",
 			"min": 1,
 			"sub_fields": [
 				{ "key": "field_rg_contact_pt_label", "label": "Label", "name": "label", "type": "text" }
 			]
-		}
+		},
+		{ "key": "field_rg_contact_submit_label", "label": "Submit button label", "name": "contact_submit_label", "type": "text", "default_value": "Send It" },
+		{ "key": "field_rg_contact_thanks_title", "label": "Thanks title", "name": "contact_thanks_title", "type": "text", "default_value": "Thanks for reaching out.", "instructions": "Shown after a successful form submission." },
+		{ "key": "field_rg_contact_thanks_body", "label": "Thanks body", "name": "contact_thanks_body", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "We'll be in touch within 48 hours." }
 	],
 	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
 	"menu_order": 8,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }

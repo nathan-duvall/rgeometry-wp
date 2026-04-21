@@ -1,8 +1,9 @@
 {
 	"key": "group_rgeometry_projects",
 	"title": "Projects",
+	"description": "The horizontally-scrolling \"Selected Work\" gallery. Each project has an image, name, meta line, location, description, and optional link.",
 	"fields": [
-		{ "key": "field_rg_projects_eyebrow", "label": "Eyebrow", "name": "projects_eyebrow", "type": "text", "default_value": "Selected Work" },
+		{ "key": "field_rg_projects_eyebrow", "label": "Eyebrow label", "name": "projects_eyebrow", "type": "text", "default_value": "Selected Work" },
 		{ "key": "field_rg_projects_heading", "label": "Heading", "name": "projects_heading", "type": "text", "default_value": "Recent projects." },
 		{
 			"key": "field_rg_projects_items",
@@ -11,15 +12,16 @@
 			"type": "repeater",
 			"layout": "block",
 			"button_label": "Add project",
+			"collapsed": "field_rg_project_name",
 			"min": 0,
 			"sub_fields": [
 				{ "key": "field_rg_project_name",     "label": "Name",        "name": "name",     "type": "text" },
-				{ "key": "field_rg_project_meta",     "label": "Meta line",   "name": "meta",     "type": "text", "instructions": "e.g. 2,400 SQ FT · CUSTOM HOME" },
-				{ "key": "field_rg_project_location", "label": "Location",    "name": "location", "type": "text" },
+				{ "key": "field_rg_project_meta",     "label": "Meta line",   "name": "meta",     "type": "text", "instructions": "Format: 2,400 SQ FT · CUSTOM HOME" },
+				{ "key": "field_rg_project_location", "label": "Location",    "name": "location", "type": "text", "instructions": "City, State" },
 				{ "key": "field_rg_project_desc",     "label": "Description", "name": "desc",     "type": "textarea", "rows": 3, "new_lines": "" },
-				{ "key": "field_rg_project_image",    "label": "Image",       "name": "image",    "type": "image", "return_format": "url", "preview_size": "medium", "instructions": "Leave blank to use a seeded placeholder." },
-				{ "key": "field_rg_project_seed",     "label": "Placeholder seed", "name": "seed", "type": "text", "instructions": "Used only when Image is blank." },
-				{ "key": "field_rg_project_link",     "label": "Link URL",    "name": "link",     "type": "url" }
+				{ "key": "field_rg_project_image",    "label": "Image",       "name": "image",    "type": "image", "return_format": "url", "preview_size": "medium", "instructions": "4:3 aspect works best. Leave blank to use a seeded placeholder." },
+				{ "key": "field_rg_project_seed",     "label": "Placeholder seed", "name": "seed", "type": "text", "instructions": "Used only when Image is blank. Lets you keep a consistent placeholder until real photography is ready." },
+				{ "key": "field_rg_project_link",     "label": "Link URL",    "name": "link",     "type": "url", "instructions": "Optional. Adds a \"View Project →\" link to the card." }
 			]
 		}
 	],
@@ -27,5 +29,6 @@
 	"menu_order": 4,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }

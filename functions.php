@@ -22,3 +22,4 @@ require_once RGEOMETRY_DIR . '/inc/acf.php';
 require_once RGEOMETRY_DIR . '/inc/helpers.php';
 require_once RGEOMETRY_DIR . '/inc/icons.php';
 require_once RGEOMETRY_DIR . '/inc/contact-form.php';
+require_once RGEOMETRY_DIR . '/inc/seed.php';

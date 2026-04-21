@@ -1,8 +1,9 @@
 {
 	"key": "group_rgeometry_services",
 	"title": "Services",
+	"description": "The 3-column \"What We Do\" section. Each service has a title, description, and an icon picked from the built-in set.",
 	"fields": [
-		{ "key": "field_rg_services_eyebrow", "label": "Eyebrow", "name": "services_eyebrow", "type": "text", "default_value": "What We Do" },
+		{ "key": "field_rg_services_eyebrow", "label": "Eyebrow label", "name": "services_eyebrow", "type": "text", "default_value": "What We Do", "instructions": "Small uppercase label above the heading." },
 		{ "key": "field_rg_services_heading", "label": "Heading", "name": "services_heading", "type": "text", "default_value": "Three things, done well." },
 		{
 			"key": "field_rg_services_items",
@@ -11,6 +12,7 @@
 			"type": "repeater",
 			"layout": "block",
 			"button_label": "Add service",
+			"collapsed": "field_rg_service_title",
 			"min": 0,
 			"sub_fields": [
 				{ "key": "field_rg_service_title",       "label": "Title",       "name": "title",       "type": "text" },
@@ -20,15 +22,7 @@
 					"label": "Icon",
 					"name": "icon",
 					"type": "select",
-					"choices": {
-						"home": "Home (pitched roof)",
-						"renovation": "Renovation (overlapping squares)",
-						"commercial": "Commercial (building)",
-						"chat": "Chat bubble",
-						"pencil": "Pencil",
-						"document": "Document",
-						"check": "Checkmark circle"
-					},
+					"choices": { "home": "Home (pitched roof)", "renovation": "Renovation (overlapping squares)", "commercial": "Commercial (building)", "chat": "Chat bubble", "pencil": "Pencil", "document": "Document", "check": "Checkmark circle" },
 					"default_value": "home",
 					"return_format": "value",
 					"allow_null": 0
@@ -40,5 +34,6 @@
 	"menu_order": 3,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }

@@ -1,8 +1,9 @@
 {
 	"key": "group_rgeometry_testimonials",
 	"title": "Testimonials",
+	"description": "The rotating testimonial carousel. Each testimonial has a quote, author, and location. Add/remove as many as you like.",
 	"fields": [
-		{ "key": "field_rg_testimonials_eyebrow", "label": "Eyebrow", "name": "testimonials_eyebrow", "type": "text", "default_value": "What Clients Say" },
+		{ "key": "field_rg_testimonials_eyebrow", "label": "Eyebrow label", "name": "testimonials_eyebrow", "type": "text", "default_value": "What Clients Say" },
 		{ "key": "field_rg_testimonials_interval_ms", "label": "Auto-rotate interval (ms)", "name": "testimonials_interval_ms", "type": "number", "default_value": 5500, "min": 2000, "max": 30000, "instructions": "How long each testimonial stays on screen before rotating. 5500 = 5.5 seconds." },
 		{
 			"key": "field_rg_testimonials_items",
@@ -11,11 +12,12 @@
 			"type": "repeater",
 			"layout": "block",
 			"button_label": "Add testimonial",
+			"collapsed": "field_rg_testimonial_author",
 			"min": 0,
 			"sub_fields": [
-				{ "key": "field_rg_testimonial_quote",    "label": "Quote",    "name": "quote",    "type": "textarea", "rows": 4, "new_lines": "" },
-				{ "key": "field_rg_testimonial_author",   "label": "Author",   "name": "author",   "type": "text" },
-				{ "key": "field_rg_testimonial_location", "label": "Location", "name": "location", "type": "text" }
+				{ "key": "field_rg_testimonial_quote",    "label": "Quote",    "name": "quote",    "type": "textarea", "rows": 4, "new_lines": "", "instructions": "Don't wrap in quotation marks; the theme adds them." },
+				{ "key": "field_rg_testimonial_author",   "label": "Author",   "name": "author",   "type": "text", "instructions": "Name or names of the person(s) being quoted." },
+				{ "key": "field_rg_testimonial_location", "label": "Location / context", "name": "location", "type": "text", "instructions": "City + state, or project type. Shown in small text under the author." }
 			]
 		}
 	],
@@ -23,5 +25,6 @@
 	"menu_order": 7,
 	"position": "normal",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true
 }
