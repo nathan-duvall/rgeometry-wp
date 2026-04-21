@@ -150,7 +150,9 @@ class RGeometry_Menu_Walker extends Walker_Nav_Menu {
  */
 function rgeometry_render_menu( $location, $item_class, $fallback = '' ) {
 	if ( ! has_nav_menu( $location ) ) {
-		echo $fallback;
+		// $fallback is developer-provided HTML. Run through wp_kses_post as a
+		// defense-in-depth measure in case a future caller passes user input.
+		echo wp_kses_post( $fallback );
 		return;
 	}
 	wp_nav_menu( array(

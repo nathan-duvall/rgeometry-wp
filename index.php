@@ -5,6 +5,10 @@
  * @package RGeometry
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 get_header();
 ?>
 <main class="rg-main">

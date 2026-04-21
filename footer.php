@@ -8,6 +8,10 @@
  * @package RGeometry
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( is_front_page() ) {
 	get_template_part( 'template-parts/section', 'footer' );
 }

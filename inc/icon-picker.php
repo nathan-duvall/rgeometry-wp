@@ -73,7 +73,11 @@ class RGeometry_Icon_Picker_Field extends acf_field {
 
 			<button type="button" class="button rg-iconpicker__btn" data-rg-iconpicker-open>
 				<span class="rg-iconpicker__preview" data-rg-iconpicker-preview>
-					<?php echo $svg_preview ? $svg_preview : '<span class="rg-iconpicker__placeholder" aria-hidden="true">?</span>'; ?>
+					<?php
+					// SVG markup comes from our hand-authored registry in inc/icons.php.
+					// Not user-supplied. Safe to echo without escaping.
+					echo $svg_preview ? $svg_preview : '<span class="rg-iconpicker__placeholder" aria-hidden="true">?</span>';
+					?>
 				</span>
 				<span class="rg-iconpicker__label" data-rg-iconpicker-label>
 					<?php echo $value ? esc_html( $label ? $label : $value ) : esc_html__( 'Choose icon…', 'rgeometry' ); ?>

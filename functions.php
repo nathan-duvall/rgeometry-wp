@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RGEOMETRY_VERSION', '0.5.3' );
+define( 'RGEOMETRY_VERSION', '0.5.4' );
 define( 'RGEOMETRY_DIR', get_stylesheet_directory() );
 define( 'RGEOMETRY_URI', get_stylesheet_directory_uri() );
 
@@ -17,6 +17,7 @@ define( 'RGEOMETRY_URI', get_stylesheet_directory_uri() );
 define( 'RGEOMETRY_ASSET_VER', defined( 'WP_DEBUG' ) && WP_DEBUG ? (string) time() : RGEOMETRY_VERSION );
 
 require_once RGEOMETRY_DIR . '/inc/setup.php';
+require_once RGEOMETRY_DIR . '/inc/security.php';
 require_once RGEOMETRY_DIR . '/inc/enqueue.php';
 require_once RGEOMETRY_DIR . '/inc/acf.php';
 require_once RGEOMETRY_DIR . '/inc/options.php';
