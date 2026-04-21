@@ -1,8 +1,57 @@
 {
 	"key": "group_rgeometry_settings_footer",
 	"title": "Footer Settings",
-	"description": "Global footer elements shown on every page. For the footer nav menu, use Appearance > Menus.",
+	"description": "Everything from the Contact section to the bottom copyright line. These are global elements shown on every page. Menu items for the footer are in Appearance > Menus.",
 	"fields": [
+		{
+			"key": "field_rg_tab_contact",
+			"label": "Contact block",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_rg_contact_eyebrow",
+			"label": "Eyebrow label",
+			"name": "contact_eyebrow",
+			"type": "text",
+			"default_value": "Contact",
+			"instructions": "Small uppercase label above the heading."
+		},
+		{
+			"key": "field_rg_contact_heading",
+			"label": "Heading",
+			"name": "contact_heading",
+			"type": "text",
+			"default_value": "Ready to talk about your project?"
+		},
+		{
+			"key": "field_rg_contact_subheading",
+			"label": "Subheading",
+			"name": "contact_subheading",
+			"type": "textarea",
+			"default_value": "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit.",
+			"rows": 3,
+			"new_lines": ""
+		},
+		{
+			"key": "field_rg_contact_form_shortcode",
+			"label": "Contact form shortcode",
+			"name": "contact_form_shortcode",
+			"type": "text",
+			"instructions": "Paste the shortcode for the form (e.g. from Gravity Forms). Example: [gravityform id=\"1\" title=\"false\" description=\"false\"]. Leave blank to hide the form column.",
+			"placeholder": "[gravityform id=\"1\" title=\"false\" description=\"false\"]"
+		},
+
+		{
+			"key": "field_rg_tab_footer",
+			"label": "Footer bar",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
 		{
 			"key": "field_rg_footer_logo",
 			"label": "Footer logo",

@@ -27,22 +27,13 @@ function rgeometry_enqueue_assets() {
 		RGEOMETRY_ASSET_VER
 	);
 
-	// ScrollReveal (vanilla IntersectionObserver) + nav/testimonials/projects/form logic.
+	// ScrollReveal (vanilla IntersectionObserver) + nav/testimonials/projects logic.
 	wp_enqueue_script(
 		'rgeometry-reveal',
 		RGEOMETRY_URI . '/assets/js/reveal.js',
 		array(),
 		RGEOMETRY_ASSET_VER,
 		true
-	);
-
-	wp_localize_script(
-		'rgeometry-reveal',
-		'rgeometryData',
-		array(
-			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-			'nonce'   => wp_create_nonce( 'rgeometry_contact' ),
-		)
 	);
 }
 

@@ -34,8 +34,13 @@ function rgeometry_acf_json_load( $paths ) {
  * Import JSON field groups into the database on admin load so they appear in
  * ACF's Field Groups admin screen as first-class records, not "Sync Available"
  * placeholders. Also handles deprecation: JSON groups marked active:false get
- * their DB record deactivated (or deleted if already empty) so old data from
- * retired groups stops cluttering the edit screen.
+ * their DB record deleted so old data from retired groups stops cluttering
+ * the edit screen.
+ *
+ * On theme version bump (RGEOMETRY_VERSION changed from what's stored in the
+ * `rgeometry_synced_version` option), all RGeometry field groups are first
+ * deleted so the next pass re-imports from the updated JSON. Field-type
+ * changes (e.g. select -> icon picker) only propagate to the DB that way.
  */
 add_action( 'admin_init', 'rgeometry_acf_sync_local_json' );
 function rgeometry_acf_sync_local_json() {
@@ -46,12 +51,28 @@ function rgeometry_acf_sync_local_json() {
 		return;
 	}
 
+	// Version-gated force resync: when the theme version changes, wipe
+	// existing RGeometry DB groups so JSON updates propagate.
+	$stored_version = get_option( 'rgeometry_synced_version' );
+	$is_version_bump = defined( 'RGEOMETRY_VERSION' ) && $stored_version !== RGEOMETRY_VERSION;
+	if ( $is_version_bump ) {
+		$db_groups = acf_get_field_groups();
+		foreach ( $db_groups as $g ) {
+			if ( empty( $g['ID'] ) || $g['ID'] <= 0 ) continue;
+			if ( strpos( $g['key'], 'group_rgeometry_' ) !== 0 ) continue;
+			if ( function_exists( 'acf_delete_field_group' ) ) {
+				acf_delete_field_group( (int) $g['ID'] );
+			}
+		}
+	}
+
 	$files = acf_get_local_json_files( 'acf-field-group' );
 	if ( empty( $files ) ) {
+		if ( $is_version_bump ) update_option( 'rgeometry_synced_version', RGEOMETRY_VERSION );
 		return;
 	}
 
-	// Index existing DB groups by ACF key -> ID.
+	// Re-index DB groups after the possible wipe.
 	$db_groups = acf_get_field_groups();
 	$db_ids    = array();
 	foreach ( $db_groups as $g ) {
@@ -90,6 +111,10 @@ function rgeometry_acf_sync_local_json() {
 				rgeometry_acf_import_field( $field );
 			}
 		}
+	}
+
+	if ( $is_version_bump ) {
+		update_option( 'rgeometry_synced_version', RGEOMETRY_VERSION );
 	}
 }
 

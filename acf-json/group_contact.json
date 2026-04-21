@@ -1,32 +1,10 @@
 {
 	"key": "group_rgeometry_contact",
-	"title": "Contact",
-	"description": "The dark contact section's editorial copy. Business contact info (address, phone, email) lives in Theme Settings > Business Info because it's shared site-wide.",
-	"fields": [
-		{ "key": "field_rg_contact_eyebrow",    "label": "Eyebrow label", "name": "contact_eyebrow",    "type": "text",     "default_value": "Contact" },
-		{ "key": "field_rg_contact_heading",    "label": "Heading",    "name": "contact_heading",    "type": "text",     "default_value": "Ready to talk about your project?" },
-		{ "key": "field_rg_contact_subheading", "label": "Subheading", "name": "contact_subheading", "type": "textarea", "rows": 3, "new_lines": "", "default_value": "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit." },
-		{
-			"key": "field_rg_contact_project_types",
-			"label": "Project type options",
-			"name": "contact_project_types",
-			"type": "repeater",
-			"layout": "table",
-			"button_label": "Add option",
-			"collapsed": "field_rg_contact_pt_label",
-			"min": 1,
-			"sub_fields": [
-				{ "key": "field_rg_contact_pt_label", "label": "Label", "name": "label", "type": "text" }
-			]
-		},
-		{ "key": "field_rg_contact_submit_label", "label": "Submit button label", "name": "contact_submit_label", "type": "text", "default_value": "Send It" },
-		{ "key": "field_rg_contact_thanks_title", "label": "Thanks title", "name": "contact_thanks_title", "type": "text", "default_value": "Thanks for reaching out.", "instructions": "Shown after a successful form submission." },
-		{ "key": "field_rg_contact_thanks_body", "label": "Thanks body", "name": "contact_thanks_body", "type": "textarea", "rows": 2, "new_lines": "", "default_value": "We'll be in touch within 48 hours." }
-	],
+	"title": "Contact (deprecated)",
+	"description": "Deprecated in v0.5. All Contact fields moved to Theme Settings > Footer so they stay consistent across pages if the site grows beyond the one-pager.",
+	"fields": [],
 	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
-	"menu_order": 8,
+	"menu_order": 99,
 	"position": "normal",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"active": true
+	"active": false
 }

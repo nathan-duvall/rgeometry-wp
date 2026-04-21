@@ -1,10 +1,13 @@
 <?php
 /**
- * Section: Contact (dark bg, 2-column, form submits via admin-ajax).
+ * Section: Contact (dark bg, 2-column).
+ *
+ * All fields are global and live under Theme Settings > Footer:
+ *   contact_eyebrow, contact_heading, contact_subheading, contact_form_shortcode.
  *
  * Business info (address/phone/email) comes from Theme Settings > Business Info.
- * Editorial copy (eyebrow/heading/subheading/project types/button labels)
- * stays on the page.
+ * The form itself is rendered via a shortcode (expected: Gravity Forms) so the
+ * theme doesn't ship its own form handler.
  *
  * @package RGeometry
  */
@@ -13,25 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$eyebrow    = rgeometry_field( 'contact_eyebrow', 'Contact' );
-$heading    = rgeometry_field( 'contact_heading', 'Ready to talk about your project?' );
-$subheading = rgeometry_field( 'contact_subheading', "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit." );
+$eyebrow        = function_exists( 'get_field' ) ? get_field( 'contact_eyebrow',    'option' ) : '';
+$heading        = function_exists( 'get_field' ) ? get_field( 'contact_heading',    'option' ) : '';
+$subheading     = function_exists( 'get_field' ) ? get_field( 'contact_subheading', 'option' ) : '';
+$form_shortcode = function_exists( 'get_field' ) ? get_field( 'contact_form_shortcode', 'option' ) : '';
 
-// Business info comes from Theme Settings (options page).
+if ( ! $eyebrow )    $eyebrow    = 'Contact';
+if ( ! $heading )    $heading    = 'Ready to talk about your project?';
+if ( ! $subheading ) $subheading = "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit.";
+
 $address = function_exists( 'get_field' ) ? get_field( 'business_address', 'option' ) : '';
 $phone   = function_exists( 'get_field' ) ? get_field( 'business_phone',   'option' ) : '';
 $email   = function_exists( 'get_field' ) ? get_field( 'business_email',   'option' ) : '';
-
-$project_types = rgeometry_field( 'contact_project_types', array(
-	array( 'label' => 'Custom Home' ),
-	array( 'label' => 'Renovation' ),
-	array( 'label' => 'Commercial' ),
-	array( 'label' => 'Not Sure' ),
-) );
-
-$submit_label = rgeometry_field( 'contact_submit_label', 'Send It' );
-$thanks_title = rgeometry_field( 'contact_thanks_title', 'Thanks for reaching out.' );
-$thanks_body  = rgeometry_field( 'contact_thanks_body',  "We'll be in touch within 48 hours." );
 ?>
 <section id="contact" class="rg-section rg-contact">
 	<div class="rg-container">
@@ -48,38 +44,13 @@ $thanks_body  = rgeometry_field( 'contact_thanks_body',  "We'll be in touch with
 				</ul>
 			</div>
 
-			<div class="rg-contact__form-wrap" data-reveal data-reveal-delay="0.15">
-				<form class="rg-contact__form" data-contact-form autocomplete="on">
-					<div class="rg-field">
-						<label class="rg-field__label">Name</label>
-						<input type="text" name="name" required class="rg-field__input" placeholder="Your name" />
+			<?php if ( ! empty( $form_shortcode ) ) : ?>
+				<div class="rg-contact__form-wrap" data-reveal data-reveal-delay="0.15">
+					<div class="rg-contact__form">
+						<?php echo do_shortcode( $form_shortcode ); ?>
 					</div>
-					<div class="rg-field">
-						<label class="rg-field__label">Email</label>
-						<input type="email" name="email" required class="rg-field__input" placeholder="your@email.com" />
-					</div>
-					<div class="rg-field">
-						<label class="rg-field__label">Project Type</label>
-						<select name="project_type" required class="rg-field__input" defaultValue="">
-							<option value="" disabled selected>Select one</option>
-							<?php foreach ( (array) $project_types as $opt ) : if ( empty( $opt['label'] ) ) continue; ?>
-								<option value="<?php echo esc_attr( $opt['label'] ); ?>"><?php echo esc_html( $opt['label'] ); ?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
-					<div class="rg-field">
-						<label class="rg-field__label">Message</label>
-						<textarea name="message" rows="4" class="rg-field__input rg-field__input--textarea" placeholder="Tell us a bit about your project..."></textarea>
-					</div>
-					<button type="submit" class="rg-btn rg-btn--primary rg-contact__submit"><?php echo esc_html( $submit_label ); ?></button>
-					<p class="rg-contact__status" data-contact-status aria-live="polite"></p>
-				</form>
-
-				<div class="rg-contact__thanks" data-contact-thanks hidden>
-					<h3 class="rg-contact__thanks-title"><?php echo esc_html( $thanks_title ); ?></h3>
-					<p class="rg-contact__thanks-body"><?php echo esc_html( $thanks_body ); ?></p>
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

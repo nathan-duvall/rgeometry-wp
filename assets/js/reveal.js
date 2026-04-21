@@ -133,56 +133,12 @@
 		start();
 	}
 
-	/* ---------- Contact form (AJAX to admin-ajax) ---------- */
-	function initContactForm() {
-		var form = document.querySelector('[data-contact-form]');
-		if (!form || typeof window.rgeometryData === 'undefined') return;
-		var status = form.querySelector('[data-contact-status]');
-		var thanks = document.querySelector('[data-contact-thanks]');
-
-		form.addEventListener('submit', function (e) {
-			e.preventDefault();
-			if (status) { status.textContent = 'Sending...'; status.classList.remove('is-error'); }
-
-			var body = new URLSearchParams();
-			body.append('action', 'rgeometry_contact');
-			body.append('nonce', window.rgeometryData.nonce);
-			body.append('name', form.querySelector('[name=name]').value || '');
-			body.append('email', form.querySelector('[name=email]').value || '');
-			body.append('project_type', form.querySelector('[name=project_type]').value || '');
-			body.append('message', form.querySelector('[name=message]').value || '');
-
-			fetch(window.rgeometryData.ajaxUrl, {
-				method: 'POST',
-				credentials: 'same-origin',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-				body: body.toString()
-			})
-			.then(function (r) { return r.json().then(function (j) { return { ok: r.ok, data: j }; }); })
-			.then(function (res) {
-				if (res.ok && res.data && res.data.success) {
-					form.setAttribute('hidden', '');
-					if (thanks) thanks.removeAttribute('hidden');
-				} else {
-					if (status) {
-						status.textContent = (res.data && res.data.data && res.data.data.message) || 'Something went wrong. Try again.';
-						status.classList.add('is-error');
-					}
-				}
-			})
-			.catch(function () {
-				if (status) { status.textContent = "Connection error. Try again."; status.classList.add('is-error'); }
-			});
-		});
-	}
-
 	function boot() {
 		initReveal();
 		initSmoothScroll();
 		initNavbar();
 		initProjects();
 		initTestimonials();
-		initContactForm();
 	}
 
 	if (document.readyState === 'loading') {

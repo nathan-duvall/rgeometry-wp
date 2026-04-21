@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RGEOMETRY_VERSION', '0.1.0' );
+define( 'RGEOMETRY_VERSION', '0.5.0' );
 define( 'RGEOMETRY_DIR', get_stylesheet_directory() );
 define( 'RGEOMETRY_URI', get_stylesheet_directory_uri() );
 
@@ -23,6 +23,6 @@ require_once RGEOMETRY_DIR . '/inc/options.php';
 require_once RGEOMETRY_DIR . '/inc/helpers.php';
 require_once RGEOMETRY_DIR . '/inc/icons.php';
 require_once RGEOMETRY_DIR . '/inc/icon-picker.php';
-require_once RGEOMETRY_DIR . '/inc/contact-form.php';
 require_once RGEOMETRY_DIR . '/inc/menus.php';
+require_once RGEOMETRY_DIR . '/inc/admin-ui.php';
 require_once RGEOMETRY_DIR . '/inc/seed.php';

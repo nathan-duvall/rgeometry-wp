@@ -131,26 +131,14 @@ function rgeometry_seed_home_defaults() {
 			array( 'quote' => 'Richard caught a structural issue in our existing plans that two other firms missed. It would have cost us $40K to fix later. Worth every penny.',                                                     'author' => 'Mark Reaves',             'location' => 'Swannanoa, NC' ),
 		),
 
-		// ----- Contact (editorial copy only; business info is in Theme Settings) -----
-		'contact_eyebrow'    => 'Contact',
-		'contact_heading'    => 'Ready to talk about your project?',
-		'contact_subheading' => "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit.",
-		'contact_project_types' => array(
-			array( 'label' => 'Custom Home' ),
-			array( 'label' => 'Renovation' ),
-			array( 'label' => 'Commercial' ),
-			array( 'label' => 'Not Sure' ),
-		),
-		'contact_submit_label' => 'Send It',
-		'contact_thanks_title' => 'Thanks for reaching out.',
-		'contact_thanks_body'  => "We'll be in touch within 48 hours.",
+		// Contact fields moved to Theme Settings > Footer in v0.5.
 	);
 }
 
 /* ============================================================ THEME SETTINGS */
 
 function rgeometry_seed_options_if_needed() {
-	$option_key = 'rgeometry_options_seeded_v1';
+	$option_key = 'rgeometry_options_seeded_v2'; // bumped after folding Contact into Footer
 	if ( get_option( $option_key ) ) {
 		return;
 	}
@@ -168,7 +156,13 @@ function rgeometry_seed_options_defaults() {
 		'header_brand_text'     => 'RGeometry',
 		'header_logo_height'    => 28,
 
-		// ----- Footer Settings -----
+		// ----- Footer Settings (contact block) -----
+		'contact_eyebrow'        => 'Contact',
+		'contact_heading'        => 'Ready to talk about your project?',
+		'contact_subheading'     => "No pitch. No pressure. Just a 30-minute conversation to see if we're the right fit.",
+		'contact_form_shortcode' => '',
+
+		// ----- Footer Settings (footer bar) -----
 		'footer_brand_text'     => 'RGeometry',
 		'footer_logo_height'    => 24,
 		'footer_tagline'        => 'Architecture grounded in how you live.',

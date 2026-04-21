@@ -1,0 +1,144 @@
+/* =============================================================================
+   RGeometry — Admin UI polish
+   Styles the ACF field group postboxes so they feel designed, not vanilla WP.
+   Only applied to postboxes whose ID starts with `acf-group_rgeometry_`.
+   ============================================================================= */
+
+/* Brand palette (mirrors the theme's HSL tokens) */
+:root {
+	--rg-admin-primary: hsl(195, 18%, 35%);      /* primary */
+	--rg-admin-primary-soft: hsl(195, 18%, 94%); /* primary-foreground tint */
+	--rg-admin-border: hsl(30, 12%, 85%);
+	--rg-admin-muted: hsl(0, 0%, 42%);
+	--rg-admin-surface: hsl(30, 15%, 98%);
+}
+
+/* --------------- Postbox shell --------------- */
+.postbox[id^="acf-group_rgeometry_"] {
+	border: 1px solid var(--rg-admin-border);
+	border-radius: 6px;
+	overflow: hidden;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+	margin-bottom: 12px;
+}
+
+/* Header bar */
+.postbox[id^="acf-group_rgeometry_"] .postbox-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 18px;
+	background: var(--rg-admin-surface);
+	border: 0;
+	border-bottom: 1px solid transparent;
+	cursor: pointer;
+	transition: background-color 150ms ease;
+}
+.postbox[id^="acf-group_rgeometry_"] .postbox-header:hover {
+	background: var(--rg-admin-primary-soft);
+}
+
+/* Open state: add a left accent stripe + border */
+.postbox[id^="acf-group_rgeometry_"]:not(.closed) .postbox-header {
+	background: #fff;
+	border-bottom-color: var(--rg-admin-border);
+	box-shadow: inset 3px 0 0 0 var(--rg-admin-primary);
+}
+.postbox[id^="acf-group_rgeometry_"]:not(.closed) {
+	border-color: var(--rg-admin-primary);
+	box-shadow: 0 2px 8px rgba(74, 97, 105, 0.08);
+}
+
+/* Icon badge */
+.rg-admin-ui__icon {
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	background: var(--rg-admin-primary);
+	color: #fff;
+	border-radius: 6px;
+	transition: background-color 150ms ease, transform 150ms ease;
+}
+.postbox[id^="acf-group_rgeometry_"] .postbox-header:hover .rg-admin-ui__icon {
+	transform: scale(1.05);
+}
+.rg-admin-ui__icon svg {
+	width: 18px;
+	height: 18px;
+	stroke-width: 2;
+}
+
+/* Title styles */
+.postbox[id^="acf-group_rgeometry_"] .postbox-header .hndle {
+	flex: 1;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #1d2327;
+	line-height: 1.3;
+	cursor: pointer;
+}
+.postbox[id^="acf-group_rgeometry_"] .postbox-header .hndle:hover { color: var(--rg-admin-primary); }
+
+/* Subtitle / group description shown under the title */
+.rg-admin-ui__subtitle {
+	display: block;
+	margin-top: 2px;
+	font-size: 12px;
+	font-weight: 400;
+	color: var(--rg-admin-muted);
+	white-space: normal;
+}
+
+/* Handle toggle button (expand/collapse chevron) */
+.postbox[id^="acf-group_rgeometry_"] .handle-actions {
+	flex-shrink: 0;
+}
+.postbox[id^="acf-group_rgeometry_"] .handlediv {
+	width: 36px;
+	height: 36px;
+	color: var(--rg-admin-muted);
+}
+.postbox[id^="acf-group_rgeometry_"] .handlediv:hover {
+	color: var(--rg-admin-primary);
+}
+.postbox[id^="acf-group_rgeometry_"] .handlediv .toggle-indicator::before {
+	font-size: 18px;
+	line-height: 36px;
+}
+
+/* Inner form area: tighter padding to offset the larger header */
+.postbox[id^="acf-group_rgeometry_"] .inside {
+	padding: 16px 20px 20px;
+	margin: 0;
+	background: #fff;
+}
+.postbox[id^="acf-group_rgeometry_"].closed .inside {
+	display: none !important;
+}
+
+/* ACF's own field rows inside — add a little breathing room */
+.postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field {
+	padding: 14px 0;
+	border-top: 1px solid #f0f0f1;
+}
+.postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field:first-child {
+	padding-top: 4px;
+	border-top: 0;
+}
+
+/* The group-level description (from the JSON "description" key) */
+.postbox[id^="acf-group_rgeometry_"] .acf-field-group-description {
+	margin: 0 0 14px;
+	padding: 10px 12px;
+	background: var(--rg-admin-surface);
+	border-left: 3px solid var(--rg-admin-primary);
+	border-radius: 3px;
+	font-size: 13px;
+	color: var(--rg-admin-muted);
+	line-height: 1.5;
+}

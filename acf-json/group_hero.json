@@ -65,17 +65,9 @@
 			"label": "Background image",
 			"name": "hero_image",
 			"type": "image",
-			"instructions": "Full-bleed image behind the hero text. Landscape orientation, at least 1920x1080. Leave blank to use a seeded placeholder.",
+			"instructions": "Full-bleed image behind the hero text. Landscape orientation, at least 1920x1080. Alt text is set on the image itself (click the image in the Media Library to edit). Leave blank to use a seeded placeholder.",
 			"return_format": "array",
 			"preview_size": "medium"
-		},
-		{
-			"key": "field_rg_hero_image_alt",
-			"label": "Image alt text",
-			"name": "hero_image_alt",
-			"type": "text",
-			"instructions": "Describes the background image for screen readers and SEO.",
-			"default_value": "Modern residential home with natural wood and stone exterior surrounded by lush landscaping"
 		}
 	],
 	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],

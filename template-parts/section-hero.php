@@ -7,8 +7,8 @@
  *   hero_subtitle     (textarea)
  *   hero_primary_cta  (group: label, target)
  *   hero_outline_cta  (group: label, target)
- *   hero_image        (image, return format: array)
- *   hero_image_alt    (text, optional override for alt)
+ *   hero_image        (image, return format: array — alt comes from the
+ *                     media library attachment's own alt text)
  *
  * Defaults below match the Lovable reference copy so the section renders
  * something sensible even before any ACF values are set.
@@ -26,8 +26,15 @@ $subtitle = rgeometry_field( 'hero_subtitle', 'RGeometry designs homes and space
 $primary_cta = rgeometry_field( 'hero_primary_cta', array( 'label' => 'See Our Work',   'target' => 'projects' ) );
 $outline_cta = rgeometry_field( 'hero_outline_cta', array( 'label' => 'Get in Touch',   'target' => 'contact'  ) );
 
-$image_url   = rgeometry_image_or_placeholder( 'hero_image', 'rgeometry-hero-architecture', 1920, 1080 );
-$image_alt   = rgeometry_field( 'hero_image_alt', 'Modern residential home with natural wood and stone exterior surrounded by lush landscaping' );
+$default_alt = 'Modern residential home with natural wood and stone exterior surrounded by lush landscaping';
+$image       = function_exists( 'get_field' ) ? get_field( 'hero_image' ) : null;
+if ( is_array( $image ) && ! empty( $image['url'] ) ) {
+	$image_url = $image['url'];
+	$image_alt = ! empty( $image['alt'] ) ? $image['alt'] : $default_alt;
+} else {
+	$image_url = rgeometry_placeholder_image( 'rgeometry-hero-architecture', 1920, 1080 );
+	$image_alt = $default_alt;
+}
 ?>
 <section id="hero" class="rg-hero">
 	<div class="rg-hero__bg">
