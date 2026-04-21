@@ -18,6 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Bump rgeometry field groups to high priority so they render above
  * plugin-registered meta boxes (Rank Math, Yoast, etc.) on the edit screen.
+ * The priority filter alone isn't enough when another plugin also uses
+ * 'high' — tied priorities sort by registration order. The second filter
+ * below runs after all plugins have registered and force-sorts rgeometry
+ * groups to the top of the high-priority slot.
  */
 add_filter( 'acf/input/meta_box_priority', 'rgeometry_acf_high_priority', 10, 2 );
 function rgeometry_acf_high_priority( $priority, $field_group ) {
@@ -25,6 +29,43 @@ function rgeometry_acf_high_priority( $priority, $field_group ) {
 		return 'high';
 	}
 	return $priority;
+}
+
+/**
+ * Force-sort rgeometry field groups to the very top of the normal/high
+ * priority slot on post edit screens, regardless of when other plugins
+ * registered their meta boxes. Runs late so everyone else has finished.
+ */
+add_action( 'add_meta_boxes', 'rgeometry_reorder_meta_boxes', 9999, 2 );
+function rgeometry_reorder_meta_boxes( $post_type, $post = null ) {
+	global $wp_meta_boxes;
+	if ( empty( $wp_meta_boxes[ $post_type ]['normal'] ) ) {
+		return;
+	}
+
+	$rg_boxes = array();
+
+	// Walk every priority slot in the 'normal' context, pull out rgeometry
+	// boxes, and save them so we can prepend to 'high' afterwards.
+	foreach ( array( 'high', 'core', 'default', 'low' ) as $priority ) {
+		if ( empty( $wp_meta_boxes[ $post_type ]['normal'][ $priority ] ) ) continue;
+		foreach ( $wp_meta_boxes[ $post_type ]['normal'][ $priority ] as $id => $box ) {
+			if ( strpos( $id, 'acf-group_rgeometry_' ) === 0 ) {
+				$rg_boxes[ $id ] = $box;
+				unset( $wp_meta_boxes[ $post_type ]['normal'][ $priority ][ $id ] );
+			}
+		}
+	}
+
+	if ( empty( $rg_boxes ) ) {
+		return;
+	}
+
+	// Prepend to the top of 'high' priority, preserving our own order.
+	$existing_high = ! empty( $wp_meta_boxes[ $post_type ]['normal']['high'] )
+		? $wp_meta_boxes[ $post_type ]['normal']['high']
+		: array();
+	$wp_meta_boxes[ $post_type ]['normal']['high'] = array_merge( $rg_boxes, $existing_high );
 }
 
 // Save field groups to the theme (ACF watches this folder and writes JSON
