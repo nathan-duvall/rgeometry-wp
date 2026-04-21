@@ -15,6 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Bump rgeometry field groups to high priority so they render above
+ * plugin-registered meta boxes (Rank Math, Yoast, etc.) on the edit screen.
+ */
+add_filter( 'acf/input/meta_box_priority', 'rgeometry_acf_high_priority', 10, 2 );
+function rgeometry_acf_high_priority( $priority, $field_group ) {
+	if ( ! empty( $field_group['key'] ) && strpos( $field_group['key'], 'group_rgeometry_' ) === 0 ) {
+		return 'high';
+	}
+	return $priority;
+}
+
 // Save field groups to the theme (ACF watches this folder and writes JSON
 // whenever a group is edited or created in the admin).
 add_filter( 'acf/settings/save_json', 'rgeometry_acf_json_save' );
@@ -38,33 +50,21 @@ function rgeometry_acf_json_load( $paths ) {
  * the edit screen.
  *
  * On theme version bump (RGEOMETRY_VERSION changed from what's stored in the
- * `rgeometry_synced_version` option), all RGeometry field groups are first
+ * `rgeometry_synced_version` option), existing RGeometry DB groups are first
  * deleted so the next pass re-imports from the updated JSON. Field-type
  * changes (e.g. select -> icon picker) only propagate to the DB that way.
  */
 add_action( 'admin_init', 'rgeometry_acf_sync_local_json' );
 function rgeometry_acf_sync_local_json() {
-	if ( ! function_exists( 'acf_get_local_json_files' ) || ! function_exists( 'acf_update_field_group' ) ) {
+	if ( ! function_exists( 'acf_get_local_json_files' ) || ! function_exists( 'acf_import_field_group' ) ) {
 		return;
 	}
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
-	// Version-gated force resync: when the theme version changes, wipe
-	// existing RGeometry DB groups so JSON updates propagate.
-	$stored_version = get_option( 'rgeometry_synced_version' );
+	$stored_version  = get_option( 'rgeometry_synced_version' );
 	$is_version_bump = defined( 'RGEOMETRY_VERSION' ) && $stored_version !== RGEOMETRY_VERSION;
-	if ( $is_version_bump ) {
-		$db_groups = acf_get_field_groups();
-		foreach ( $db_groups as $g ) {
-			if ( empty( $g['ID'] ) || $g['ID'] <= 0 ) continue;
-			if ( strpos( $g['key'], 'group_rgeometry_' ) !== 0 ) continue;
-			if ( function_exists( 'acf_delete_field_group' ) ) {
-				acf_delete_field_group( (int) $g['ID'] );
-			}
-		}
-	}
 
 	$files = acf_get_local_json_files( 'acf-field-group' );
 	if ( empty( $files ) ) {
@@ -72,50 +72,69 @@ function rgeometry_acf_sync_local_json() {
 		return;
 	}
 
-	// Re-index DB groups after the possible wipe.
-	$db_groups = acf_get_field_groups();
-	$db_ids    = array();
-	foreach ( $db_groups as $g ) {
-		if ( ! empty( $g['ID'] ) && $g['ID'] > 0 ) {
-			$db_ids[ $g['key'] ] = (int) $g['ID'];
+	foreach ( $files as $key => $file_path ) {
+		// Read the JSON file directly. acf_get_local_field_group() would
+		// return the group metadata without its fields array (ACF stores
+		// groups and fields separately in its local registry), so importing
+		// from it results in a group with zero fields.
+		if ( ! is_readable( $file_path ) ) {
+			continue;
 		}
-	}
-
-	foreach ( array_keys( $files ) as $key ) {
-		$local = acf_get_local_field_group( $key );
-		if ( ! $local ) {
+		$json = json_decode( file_get_contents( $file_path ), true );
+		if ( ! is_array( $json ) || empty( $json['key'] ) ) {
 			continue;
 		}
 
-		$is_deprecated = isset( $local['active'] ) && $local['active'] === false;
+		$is_deprecated = isset( $json['active'] ) && $json['active'] === false;
+		$existing      = rgeometry_acf_find_db_group_id( $key );
 
-		// Deprecated: if a DB record exists, delete it so it stops showing up.
 		if ( $is_deprecated ) {
-			if ( isset( $db_ids[ $key ] ) && function_exists( 'acf_delete_field_group' ) ) {
-				acf_delete_field_group( $db_ids[ $key ] );
+			if ( $existing && function_exists( 'acf_delete_field_group' ) ) {
+				acf_delete_field_group( $existing );
 			}
 			continue;
 		}
 
-		// Already imported and not deprecated: nothing to do.
-		if ( isset( $db_ids[ $key ] ) ) {
-			continue;
+		// Version bump: delete the old DB record so the import creates a
+		// fresh one from the JSON definition.
+		if ( $is_version_bump && $existing && function_exists( 'acf_delete_field_group' ) ) {
+			acf_delete_field_group( $existing );
+			$existing = 0;
 		}
 
-		// Fresh import.
-		$fields = acf_get_fields( $local );
-		$group  = acf_update_field_group( $local );
-		if ( $fields ) {
-			foreach ( $fields as $field ) {
-				$field['parent'] = $group['ID'];
-				rgeometry_acf_import_field( $field );
-			}
+		if ( $existing ) {
+			continue; // already in DB, not a version bump, nothing to do
 		}
+
+		// Use ACF's own import (same path the admin "Import JSON" button uses).
+		// The JSON payload carries the nested fields/sub_fields/layouts.
+		acf_import_field_group( $json );
 	}
 
 	if ( $is_version_bump ) {
 		update_option( 'rgeometry_synced_version', RGEOMETRY_VERSION );
 	}
+}
+
+/**
+ * Direct wp_posts lookup for an ACF field group by key. Bypasses ACF's in-
+ * memory cache, which lags after acf_delete_field_group() inside the same
+ * request.
+ *
+ * @param string $key  ACF field-group key (stored as post_name).
+ * @return int  Post ID if found, 0 otherwise.
+ */
+function rgeometry_acf_find_db_group_id( $key ) {
+	$posts = get_posts( array(
+		'post_type'              => 'acf-field-group',
+		'name'                   => $key,
+		'posts_per_page'         => 1,
+		'post_status'            => 'any',
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+	) );
+	return $posts ? (int) $posts[0]->ID : 0;
 }
 
 /**

@@ -113,7 +113,7 @@
 			"name": "footer_copyright",
 			"type": "text",
 			"default_value": "All rights reserved.",
-			"instructions": "Appended after the auto-generated year and brand name."
+			"instructions": "Appended after the auto-generated year and brand name. HTML links are allowed. Example: All rights reserved. Made by <a target=\"_blank\" href=\"https://gruffygoat.com\">GruffyGoat</a>."
 		}
 	],
 	"location": [[{ "param": "options_page", "operator": "==", "value": "acf-options-footer" }]],

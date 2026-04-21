@@ -25,13 +25,6 @@
 			"type": "email",
 			"default_value": "hello@rgeometry.com",
 			"instructions": "Shown on the page. Visible to visitors."
-		},
-		{
-			"key": "field_rg_business_form_recipient",
-			"label": "Form recipient email",
-			"name": "business_form_recipient_email",
-			"type": "email",
-			"instructions": "Where contact form submissions are sent. Falls back to the site admin email if blank. Not displayed on the page."
 		}
 	],
 	"location": [[{ "param": "options_page", "operator": "==", "value": "acf-options-business-info" }]],

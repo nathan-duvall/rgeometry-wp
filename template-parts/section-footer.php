@@ -52,7 +52,7 @@ $socials     = function_exists( 'get_field' ) ? get_field( 'footer_socials', 'op
 		</div>
 
 		<div class="rg-footer__copy">
-			&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $brand_text ); ?>. <?php echo esc_html( $copyright ); ?>
+			&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $brand_text ); ?>. <?php echo wp_kses_post( $copyright ); ?>
 		</div>
 	</div>
 </footer>

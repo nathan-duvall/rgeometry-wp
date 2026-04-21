@@ -173,10 +173,9 @@ function rgeometry_seed_options_defaults() {
 		),
 
 		// ----- Business Info -----
-		'business_address'               => '201 Sikes Hall, Clemson, SC 29634',
-		'business_phone'                 => '(864) 207-0500',
-		'business_email'                 => 'hello@rgeometry.com',
-		'business_form_recipient_email'  => '',
+		'business_address'  => '201 Sikes Hall, Clemson, SC 29634',
+		'business_phone'    => '(864) 207-0500',
+		'business_email'    => 'hello@rgeometry.com',
 	);
 }
 
