@@ -1,17 +1,17 @@
 /*
 Theme Name: RGeometry
-Theme URI: https://github.com/nathan-duvall/rgeometry-wp
+Theme URI: https://rgeometry.com
 Author: GruffyGoat
 Author URI: https://gruffygoat.com
-Description: Custom WordPress theme ported 1:1 from the Lovable reference at rgeometry.lovable.app. Built for GruffyGoat's Lovable-to-WordPress workflow. Uses ACF Pro for content editing, vanilla IntersectionObserver for scroll animations, and hand-written CSS that mirrors the original Tailwind output.
-Version: 0.1.0
+Description: A custom WordPress theme designed and built by GruffyGoat for RGeometry, an architecture firm based in Upstate South Carolina. One-page layout with a focused editing experience powered by Advanced Custom Fields Pro. Maintained by GruffyGoat.
+Version: 0.5.0
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
 License: Proprietary
 License URI: https://gruffygoat.com
 Text Domain: rgeometry
-Tags: custom, one-page, acf
+Tags: custom, one-page, acf, architecture
 */
 
 /* Actual styles live in assets/css/theme.css and are enqueued via functions.php.

@@ -1,78 +1,67 @@
 /* =============================================================================
    RGeometry — Admin UI polish
-   Styles the ACF field group postboxes so they feel designed, not vanilla WP.
-   Only applied to postboxes whose ID starts with `acf-group_rgeometry_`.
+   Styled ACF postboxes that feel designed without fighting WP admin patterns.
+   Only targets postboxes whose ID starts with `acf-group_rgeometry_`, leaving
+   Rank Math / Yoast / editor meta boxes alone.
    ============================================================================= */
 
-/* Brand palette (mirrors the theme's HSL tokens) */
 :root {
-	--rg-admin-primary: hsl(195, 18%, 35%);      /* primary */
-	--rg-admin-primary-soft: hsl(195, 18%, 94%); /* primary-foreground tint */
-	--rg-admin-border: hsl(30, 12%, 85%);
-	--rg-admin-muted: hsl(0, 0%, 42%);
-	--rg-admin-surface: hsl(30, 15%, 98%);
+	--rg-admin-primary: hsl(195, 18%, 35%);
+	--rg-admin-primary-ink: #fff;
+	--rg-admin-border: #dcdcde;
+	--rg-admin-muted: #646970;
+	--rg-admin-surface: #fafafa;
 }
 
-/* --------------- Postbox shell --------------- */
+/* --------------- Postbox shell (restrained, not heavy) --------------- */
 .postbox[id^="acf-group_rgeometry_"] {
 	border: 1px solid var(--rg-admin-border);
-	border-radius: 6px;
-	overflow: hidden;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-	margin-bottom: 12px;
+	border-radius: 4px;
 }
 
-/* Header bar */
-.postbox[id^="acf-group_rgeometry_"] .postbox-header {
+/* Header */
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	padding: 14px 18px;
+	gap: 10px;
+	padding: 10px 12px;
 	background: var(--rg-admin-surface);
 	border: 0;
 	border-bottom: 1px solid transparent;
 	cursor: pointer;
-	transition: background-color 150ms ease;
+	min-height: 44px;
 }
-.postbox[id^="acf-group_rgeometry_"] .postbox-header:hover {
-	background: var(--rg-admin-primary-soft);
-}
-
-/* Open state: add a left accent stripe + border */
-.postbox[id^="acf-group_rgeometry_"]:not(.closed) .postbox-header {
+.postbox[id^="acf-group_rgeometry_"]:not(.closed) > .postbox-header {
 	background: #fff;
 	border-bottom-color: var(--rg-admin-border);
-	box-shadow: inset 3px 0 0 0 var(--rg-admin-primary);
 }
-.postbox[id^="acf-group_rgeometry_"]:not(.closed) {
-	border-color: var(--rg-admin-primary);
-	box-shadow: 0 2px 8px rgba(74, 97, 105, 0.08);
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header:hover {
+	background: #f4f5f5;
+}
+.postbox[id^="acf-group_rgeometry_"]:not(.closed) > .postbox-header:hover {
+	background: #fafbfc;
 }
 
-/* Icon badge */
+/* Icon badge - smaller + softer */
 .rg-admin-ui__icon {
 	flex-shrink: 0;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 32px;
-	height: 32px;
+	width: 26px;
+	height: 26px;
 	background: var(--rg-admin-primary);
-	color: #fff;
-	border-radius: 6px;
-	transition: background-color 150ms ease, transform 150ms ease;
-}
-.postbox[id^="acf-group_rgeometry_"] .postbox-header:hover .rg-admin-ui__icon {
-	transform: scale(1.05);
+	color: var(--rg-admin-primary-ink);
+	border-radius: 4px;
 }
 .rg-admin-ui__icon svg {
-	width: 18px;
-	height: 18px;
+	width: 15px;
+	height: 15px;
 	stroke-width: 2;
 }
 
-/* Title styles */
-.postbox[id^="acf-group_rgeometry_"] .postbox-header .hndle {
+/* Title */
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header .hndle {
 	flex: 1;
 	margin: 0;
 	padding: 0;
@@ -80,40 +69,32 @@
 	font-weight: 600;
 	color: #1d2327;
 	line-height: 1.3;
-	cursor: pointer;
-}
-.postbox[id^="acf-group_rgeometry_"] .postbox-header .hndle:hover { color: var(--rg-admin-primary); }
-
-/* Subtitle / group description shown under the title */
-.rg-admin-ui__subtitle {
-	display: block;
-	margin-top: 2px;
-	font-size: 12px;
-	font-weight: 400;
-	color: var(--rg-admin-muted);
-	white-space: normal;
 }
 
-/* Handle toggle button (expand/collapse chevron) */
-.postbox[id^="acf-group_rgeometry_"] .handle-actions {
+/* Right-side controls (gear, order arrows, chevron) - keep WP defaults but
+   tighten so they don't dominate the bar. */
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header .handle-actions {
 	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	gap: 2px;
 }
-.postbox[id^="acf-group_rgeometry_"] .handlediv {
-	width: 36px;
-	height: 36px;
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header .handlediv {
+	width: 32px;
+	height: 32px;
 	color: var(--rg-admin-muted);
 }
-.postbox[id^="acf-group_rgeometry_"] .handlediv:hover {
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header .handlediv:hover {
 	color: var(--rg-admin-primary);
 }
-.postbox[id^="acf-group_rgeometry_"] .handlediv .toggle-indicator::before {
+.postbox[id^="acf-group_rgeometry_"] > .postbox-header .handlediv .toggle-indicator::before {
 	font-size: 18px;
-	line-height: 36px;
+	line-height: 32px;
 }
 
-/* Inner form area: tighter padding to offset the larger header */
+/* Inside (form body) */
 .postbox[id^="acf-group_rgeometry_"] .inside {
-	padding: 16px 20px 20px;
+	padding: 14px 16px 18px;
 	margin: 0;
 	background: #fff;
 }
@@ -121,9 +102,9 @@
 	display: none !important;
 }
 
-/* ACF's own field rows inside — add a little breathing room */
+/* ACF field rows */
 .postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field {
-	padding: 14px 0;
+	padding: 12px 0;
 	border-top: 1px solid #f0f0f1;
 }
 .postbox[id^="acf-group_rgeometry_"] .acf-fields > .acf-field:first-child {
@@ -131,14 +112,14 @@
 	border-top: 0;
 }
 
-/* The group-level description (from the JSON "description" key) */
+/* Group-level description, when ACF surfaces it */
 .postbox[id^="acf-group_rgeometry_"] .acf-field-group-description {
-	margin: 0 0 14px;
-	padding: 10px 12px;
+	margin: 0 0 12px;
+	padding: 8px 10px;
 	background: var(--rg-admin-surface);
-	border-left: 3px solid var(--rg-admin-primary);
-	border-radius: 3px;
-	font-size: 13px;
+	border-left: 2px solid var(--rg-admin-primary);
+	border-radius: 2px;
+	font-size: 12px;
 	color: var(--rg-admin-muted);
 	line-height: 1.5;
 }
