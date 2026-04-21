@@ -1,0 +1,118 @@
+{
+	"key": "group_rgeometry_hero",
+	"title": "Hero",
+	"fields": [
+		{
+			"key": "field_rg_hero_title",
+			"label": "Title",
+			"name": "hero_title",
+			"type": "text",
+			"required": 0,
+			"default_value": "Architecture that fits the way you actually live.",
+			"maxlength": 200
+		},
+		{
+			"key": "field_rg_hero_subtitle",
+			"label": "Subtitle",
+			"name": "hero_subtitle",
+			"type": "textarea",
+			"required": 0,
+			"default_value": "RGeometry designs homes and spaces in Upstate South Carolina that are thoughtful, buildable, and built to last, not built to impress a magazine.",
+			"rows": 3,
+			"new_lines": ""
+		},
+		{
+			"key": "field_rg_hero_primary_cta",
+			"label": "Primary CTA",
+			"name": "hero_primary_cta",
+			"type": "group",
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_rg_hero_primary_cta_label",
+					"label": "Label",
+					"name": "label",
+					"type": "text",
+					"default_value": "See Our Work"
+				},
+				{
+					"key": "field_rg_hero_primary_cta_target",
+					"label": "Scrolls to section",
+					"name": "target",
+					"type": "select",
+					"choices": {
+						"projects": "Projects",
+						"services": "Services",
+						"about": "About",
+						"process": "Process",
+						"testimonials": "Testimonials",
+						"contact": "Contact"
+					},
+					"default_value": "projects",
+					"allow_null": 0,
+					"return_format": "value"
+				}
+			]
+		},
+		{
+			"key": "field_rg_hero_outline_cta",
+			"label": "Outline CTA",
+			"name": "hero_outline_cta",
+			"type": "group",
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_rg_hero_outline_cta_label",
+					"label": "Label",
+					"name": "label",
+					"type": "text",
+					"default_value": "Get in Touch"
+				},
+				{
+					"key": "field_rg_hero_outline_cta_target",
+					"label": "Scrolls to section",
+					"name": "target",
+					"type": "select",
+					"choices": {
+						"contact": "Contact",
+						"projects": "Projects",
+						"services": "Services",
+						"about": "About",
+						"process": "Process",
+						"testimonials": "Testimonials"
+					},
+					"default_value": "contact",
+					"allow_null": 0,
+					"return_format": "value"
+				}
+			]
+		},
+		{
+			"key": "field_rg_hero_image",
+			"label": "Background image",
+			"name": "hero_image",
+			"type": "image",
+			"instructions": "Leave blank to use the seeded Lorem Picsum placeholder.",
+			"return_format": "array",
+			"preview_size": "medium"
+		},
+		{
+			"key": "field_rg_hero_image_alt",
+			"label": "Image alt text",
+			"name": "hero_image_alt",
+			"type": "text",
+			"instructions": "Optional. Overrides the default alt text on the hero image."
+		}
+	],
+	"location": [
+		[
+			{ "param": "page_type", "operator": "==", "value": "front_page" }
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true
+}

@@ -1,0 +1,44 @@
+{
+	"key": "group_rgeometry_services",
+	"title": "Services",
+	"fields": [
+		{ "key": "field_rg_services_eyebrow", "label": "Eyebrow", "name": "services_eyebrow", "type": "text", "default_value": "What We Do" },
+		{ "key": "field_rg_services_heading", "label": "Heading", "name": "services_heading", "type": "text", "default_value": "Three things, done well." },
+		{
+			"key": "field_rg_services_items",
+			"label": "Services",
+			"name": "services_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add service",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_service_title",       "label": "Title",       "name": "title",       "type": "text" },
+				{ "key": "field_rg_service_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3, "new_lines": "" },
+				{
+					"key": "field_rg_service_icon",
+					"label": "Icon",
+					"name": "icon",
+					"type": "select",
+					"choices": {
+						"home": "Home (pitched roof)",
+						"renovation": "Renovation (overlapping squares)",
+						"commercial": "Commercial (building)",
+						"chat": "Chat bubble",
+						"pencil": "Pencil",
+						"document": "Document",
+						"check": "Checkmark circle"
+					},
+					"default_value": "home",
+					"return_format": "value",
+					"allow_null": 0
+				}
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 3,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

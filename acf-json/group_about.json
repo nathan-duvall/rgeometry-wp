@@ -1,0 +1,30 @@
+{
+	"key": "group_rgeometry_about",
+	"title": "About",
+	"fields": [
+		{ "key": "field_rg_about_eyebrow", "label": "Eyebrow", "name": "about_eyebrow", "type": "text", "default_value": "About Us" },
+		{ "key": "field_rg_about_heading", "label": "Heading", "name": "about_heading", "type": "text", "default_value": "Small firm. Full attention." },
+		{ "key": "field_rg_about_paragraph_1", "label": "Paragraph 1", "name": "about_paragraph_1", "type": "textarea", "rows": 4, "new_lines": "" },
+		{ "key": "field_rg_about_paragraph_2", "label": "Paragraph 2", "name": "about_paragraph_2", "type": "textarea", "rows": 4, "new_lines": "" },
+		{
+			"key": "field_rg_about_team",
+			"label": "Team",
+			"name": "about_team",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add team member",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_team_name",  "label": "Name",  "name": "name",  "type": "text" },
+				{ "key": "field_rg_team_role",  "label": "Role",  "name": "role",  "type": "text" },
+				{ "key": "field_rg_team_image", "label": "Photo", "name": "image", "type": "image", "return_format": "url", "preview_size": "thumbnail", "instructions": "Leave blank to use a seeded placeholder." },
+				{ "key": "field_rg_team_seed",  "label": "Placeholder seed", "name": "seed", "type": "text", "instructions": "Used only when Photo is blank." }
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 5,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

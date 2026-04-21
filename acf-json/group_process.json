@@ -1,0 +1,45 @@
+{
+	"key": "group_rgeometry_process",
+	"title": "Process",
+	"fields": [
+		{ "key": "field_rg_process_eyebrow", "label": "Eyebrow", "name": "process_eyebrow", "type": "text", "default_value": "How We Work" },
+		{ "key": "field_rg_process_heading", "label": "Heading", "name": "process_heading", "type": "text", "default_value": "A process that respects your time." },
+		{
+			"key": "field_rg_process_steps",
+			"label": "Steps",
+			"name": "process_steps",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add step",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_step_num",   "label": "Number",      "name": "num",   "type": "text", "instructions": "Format like 01, 02, 03…" },
+				{ "key": "field_rg_step_title", "label": "Title",       "name": "title", "type": "text" },
+				{ "key": "field_rg_step_desc",  "label": "Description", "name": "desc",  "type": "textarea", "rows": 3, "new_lines": "" },
+				{
+					"key": "field_rg_step_icon",
+					"label": "Icon",
+					"name": "icon",
+					"type": "select",
+					"choices": {
+						"chat": "Chat bubble",
+						"pencil": "Pencil",
+						"document": "Document",
+						"check": "Checkmark circle",
+						"home": "Home",
+						"renovation": "Renovation",
+						"commercial": "Commercial"
+					},
+					"default_value": "chat",
+					"return_format": "value",
+					"allow_null": 0
+				}
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 6,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

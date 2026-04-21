@@ -1,0 +1,58 @@
+{
+	"key": "group_rgeometry_nav",
+	"title": "Navbar",
+	"fields": [
+		{ "key": "field_rg_nav_brand",  "label": "Brand text", "name": "nav_brand",  "type": "text", "default_value": "RGeometry" },
+		{
+			"key": "field_rg_nav_links",
+			"label": "Links",
+			"name": "nav_links",
+			"type": "repeater",
+			"layout": "table",
+			"button_label": "Add link",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_nav_link_label",  "label": "Label",  "name": "label",  "type": "text" },
+				{
+					"key": "field_rg_nav_link_target",
+					"label": "Scrolls to",
+					"name": "target",
+					"type": "select",
+					"choices": {
+						"services": "Services",
+						"projects": "Projects",
+						"about": "About",
+						"process": "Process",
+						"testimonials": "Testimonials",
+						"contact": "Contact"
+					},
+					"return_format": "value",
+					"allow_null": 0
+				}
+			]
+		},
+		{ "key": "field_rg_nav_cta_label",  "label": "CTA label",  "name": "nav_cta_label",  "type": "text", "default_value": "Start a Conversation" },
+		{
+			"key": "field_rg_nav_cta_target",
+			"label": "CTA scrolls to",
+			"name": "nav_cta_target",
+			"type": "select",
+			"choices": {
+				"contact": "Contact",
+				"projects": "Projects",
+				"services": "Services",
+				"about": "About",
+				"process": "Process",
+				"testimonials": "Testimonials"
+			},
+			"default_value": "contact",
+			"allow_null": 0,
+			"return_format": "value"
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 1,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

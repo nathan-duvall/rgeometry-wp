@@ -1,0 +1,27 @@
+{
+	"key": "group_rgeometry_testimonials",
+	"title": "Testimonials",
+	"fields": [
+		{ "key": "field_rg_testimonials_eyebrow", "label": "Eyebrow", "name": "testimonials_eyebrow", "type": "text", "default_value": "What Clients Say" },
+		{ "key": "field_rg_testimonials_interval_ms", "label": "Auto-rotate interval (ms)", "name": "testimonials_interval_ms", "type": "number", "default_value": 5500, "min": 2000, "max": 30000, "instructions": "How long each testimonial stays on screen before rotating. 5500 = 5.5 seconds." },
+		{
+			"key": "field_rg_testimonials_items",
+			"label": "Testimonials",
+			"name": "testimonials_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add testimonial",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_testimonial_quote",    "label": "Quote",    "name": "quote",    "type": "textarea", "rows": 4, "new_lines": "" },
+				{ "key": "field_rg_testimonial_author",   "label": "Author",   "name": "author",   "type": "text" },
+				{ "key": "field_rg_testimonial_location", "label": "Location", "name": "location", "type": "text" }
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 7,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

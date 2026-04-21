@@ -1,0 +1,65 @@
+{
+	"key": "group_rgeometry_footer",
+	"title": "Footer",
+	"fields": [
+		{ "key": "field_rg_footer_brand",   "label": "Brand",   "name": "footer_brand",   "type": "text", "default_value": "RGeometry" },
+		{ "key": "field_rg_footer_tagline", "label": "Tagline", "name": "footer_tagline", "type": "text", "default_value": "Architecture grounded in how you live." },
+		{
+			"key": "field_rg_footer_links",
+			"label": "Links",
+			"name": "footer_links",
+			"type": "repeater",
+			"layout": "table",
+			"button_label": "Add link",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_footer_link_label",  "label": "Label",  "name": "label",  "type": "text" },
+				{
+					"key": "field_rg_footer_link_target",
+					"label": "Scrolls to",
+					"name": "target",
+					"type": "select",
+					"choices": {
+						"projects": "Projects",
+						"services": "Services",
+						"about": "About",
+						"process": "Process",
+						"testimonials": "Testimonials",
+						"contact": "Contact"
+					},
+					"return_format": "value",
+					"allow_null": 0
+				}
+			]
+		},
+		{
+			"key": "field_rg_footer_socials",
+			"label": "Social links",
+			"name": "footer_socials",
+			"type": "repeater",
+			"layout": "table",
+			"button_label": "Add social",
+			"min": 0,
+			"sub_fields": [
+				{
+					"key": "field_rg_footer_social_icon",
+					"label": "Icon",
+					"name": "icon",
+					"type": "select",
+					"choices": { "instagram": "Instagram", "linkedin": "LinkedIn" },
+					"default_value": "instagram",
+					"return_format": "value",
+					"allow_null": 0
+				},
+				{ "key": "field_rg_footer_social_url",   "label": "URL",   "name": "url",   "type": "url" },
+				{ "key": "field_rg_footer_social_label", "label": "Label (for screen readers)", "name": "label", "type": "text" }
+			]
+		},
+		{ "key": "field_rg_footer_copyright", "label": "Copyright line", "name": "footer_copyright", "type": "text", "default_value": "All rights reserved." }
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 9,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

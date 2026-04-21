@@ -1,0 +1,30 @@
+{
+	"key": "group_rgeometry_contact",
+	"title": "Contact",
+	"fields": [
+		{ "key": "field_rg_contact_eyebrow",    "label": "Eyebrow",    "name": "contact_eyebrow",    "type": "text",     "default_value": "Contact" },
+		{ "key": "field_rg_contact_heading",    "label": "Heading",    "name": "contact_heading",    "type": "text",     "default_value": "Ready to talk about your project?" },
+		{ "key": "field_rg_contact_subheading", "label": "Subheading", "name": "contact_subheading", "type": "textarea", "rows": 3, "new_lines": "" },
+		{ "key": "field_rg_contact_address",    "label": "Address",    "name": "contact_address",    "type": "text" },
+		{ "key": "field_rg_contact_phone",      "label": "Phone",      "name": "contact_phone",      "type": "text" },
+		{ "key": "field_rg_contact_email",      "label": "Email (shown to visitors)", "name": "contact_email", "type": "email" },
+		{ "key": "field_rg_contact_recipient",  "label": "Form recipient email",      "name": "contact_recipient_email", "type": "email", "instructions": "Where form submissions are sent. Falls back to site admin email." },
+		{
+			"key": "field_rg_contact_project_types",
+			"label": "Project type options",
+			"name": "contact_project_types",
+			"type": "repeater",
+			"layout": "table",
+			"button_label": "Add option",
+			"min": 1,
+			"sub_fields": [
+				{ "key": "field_rg_contact_pt_label", "label": "Label", "name": "label", "type": "text" }
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 8,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}

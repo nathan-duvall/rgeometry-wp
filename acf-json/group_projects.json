@@ -1,0 +1,31 @@
+{
+	"key": "group_rgeometry_projects",
+	"title": "Projects",
+	"fields": [
+		{ "key": "field_rg_projects_eyebrow", "label": "Eyebrow", "name": "projects_eyebrow", "type": "text", "default_value": "Selected Work" },
+		{ "key": "field_rg_projects_heading", "label": "Heading", "name": "projects_heading", "type": "text", "default_value": "Recent projects." },
+		{
+			"key": "field_rg_projects_items",
+			"label": "Projects",
+			"name": "projects_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add project",
+			"min": 0,
+			"sub_fields": [
+				{ "key": "field_rg_project_name",     "label": "Name",        "name": "name",     "type": "text" },
+				{ "key": "field_rg_project_meta",     "label": "Meta line",   "name": "meta",     "type": "text", "instructions": "e.g. 2,400 SQ FT · CUSTOM HOME" },
+				{ "key": "field_rg_project_location", "label": "Location",    "name": "location", "type": "text" },
+				{ "key": "field_rg_project_desc",     "label": "Description", "name": "desc",     "type": "textarea", "rows": 3, "new_lines": "" },
+				{ "key": "field_rg_project_image",    "label": "Image",       "name": "image",    "type": "image", "return_format": "url", "preview_size": "medium", "instructions": "Leave blank to use a seeded placeholder." },
+				{ "key": "field_rg_project_seed",     "label": "Placeholder seed", "name": "seed", "type": "text", "instructions": "Used only when Image is blank." },
+				{ "key": "field_rg_project_link",     "label": "Link URL",    "name": "link",     "type": "url" }
+			]
+		}
+	],
+	"location": [[{ "param": "page_type", "operator": "==", "value": "front_page" }]],
+	"menu_order": 4,
+	"position": "normal",
+	"label_placement": "top",
+	"active": true
+}
