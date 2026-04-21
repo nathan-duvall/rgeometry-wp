@@ -27,6 +27,16 @@ function rgeometry_enqueue_assets() {
 		RGEOMETRY_ASSET_VER
 	);
 
+	// Theme root style.css, loaded LAST so any custom CSS added there (via
+	// Appearance > Theme File Editor or SFTP) overrides the compiled theme
+	// styles. Good for small, theme-scoped tweaks like Gravity Forms rules.
+	wp_enqueue_style(
+		'rgeometry-custom',
+		get_stylesheet_uri(),
+		array( 'rgeometry-theme' ),
+		RGEOMETRY_ASSET_VER
+	);
+
 	// ScrollReveal (vanilla IntersectionObserver) + nav/testimonials/projects logic.
 	wp_enqueue_script(
 		'rgeometry-reveal',

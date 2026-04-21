@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RGEOMETRY_VERSION', '0.5.4' );
+define( 'RGEOMETRY_VERSION', '0.5.5' );
 define( 'RGEOMETRY_DIR', get_stylesheet_directory() );
 define( 'RGEOMETRY_URI', get_stylesheet_directory_uri() );
 

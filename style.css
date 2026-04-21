@@ -4,7 +4,7 @@ Theme URI: https://rgeometry.com
 Author: GruffyGoat
 Author URI: https://gruffygoat.com
 Description: A custom WordPress theme designed and built by GruffyGoat for RGeometry, an architecture firm based in Upstate South Carolina. One-page layout with a focused editing experience powered by Advanced Custom Fields Pro. Maintained by GruffyGoat.
-Version: 0.5.0
+Version: 0.5.5
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -14,5 +14,43 @@ Text Domain: rgeometry
 Tags: custom, one-page, acf, architecture
 */
 
-/* Actual styles live in assets/css/theme.css and are enqueued via functions.php.
-   This file only exists because WordPress requires it to identify the theme. */
+/* =============================================================================
+   Custom CSS
+   =============================================================================
+   This file loads AFTER the main theme stylesheet (assets/css/theme.css), so
+   any rules added below will override the theme. Use for small per-site
+   tweaks like Gravity Forms styling, one-off element adjustments, or
+   client-specific overrides.
+
+   Heads up:
+   - Edits here made via Appearance > Theme File Editor are persistent on the
+     server until the theme is re-deployed via SFTP. If we push a new build,
+     edits here will be overwritten unless they're also committed to the repo.
+   - For quick tweaks that should survive redeploys, Appearance > Customize >
+     Additional CSS is stored in the database and persists across theme
+     updates. Same loading order (after the theme CSS), same override power.
+   ============================================================================= */
+
+/* ---------- Gravity Forms overrides ---------- */
+/* Add your form styling here. Example scaffolding:
+
+.gform_wrapper { font-family: inherit; }
+.gform_wrapper .gfield label { color: hsl(var(--contact-foreground) / 0.6); }
+.gform_wrapper input[type="text"],
+.gform_wrapper input[type="email"],
+.gform_wrapper textarea {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid hsl(var(--contact-foreground) / 0.2);
+    color: hsl(var(--contact-foreground));
+}
+.gform_wrapper .gform_button {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.875rem 2rem;
+    border-radius: 0.125rem;
+}
+
+*/
+
+/* ---------- Other custom overrides ---------- */
