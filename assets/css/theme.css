@@ -334,7 +334,11 @@ html.admin-bar { scroll-padding-top: 32px; }
 	gap: 1.5rem;
 	overflow-x: auto;
 	padding-left: 1.5rem;
-	scroll-snap-type: x mandatory;
+	/* Match the Lovable reference: no scroll-snap. Mandatory snap forces the
+	   first card to the scroll-container's left edge on initial paint, which
+	   visually erases the padding-left and makes the cards look flush to the
+	   viewport. Without snap, padding-left holds and the first card aligns
+	   with the section header above it. */
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 }
@@ -354,7 +358,6 @@ html.admin-bar { scroll-padding-top: 32px; }
 	width: 45vw;
 	min-width: 300px;
 	max-width: 540px;
-	scroll-snap-align: start;
 }
 .rg-project__media {
 	margin-bottom: 1.25rem;
